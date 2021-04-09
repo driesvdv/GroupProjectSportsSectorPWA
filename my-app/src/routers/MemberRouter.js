@@ -7,12 +7,15 @@ import MemberDetailClubPage from "../pages/members/MemberDetailClubPage";
 import MemberDetailClubAddPage from "../pages/members/MemberDetailClubAddPage";
 
 function MemberRouter() {
-    let { path, url } = useRouteMatch();
+    let {path, url} = useRouteMatch();
 
     return (
         <Switch>
             <Route exact path={path}>
                 <MemberListPage/>
+            </Route>
+            <Route exact path={`${path}/add`}>
+                <MemberAddPage/>
             </Route>
             <Route exact path={`${path}/:memberId`}>
                 <MemberDetailPage/>
@@ -26,9 +29,7 @@ function MemberRouter() {
             <Route exact path={`${path}/:memberId/clubs/:clubId`}>
                 <MemberDetailClubPage/>
             </Route>
-            <Route exact path={`${path}/add`}>
-                <MemberAddPage/>
-            </Route>
+
         </Switch>
     );
 }
