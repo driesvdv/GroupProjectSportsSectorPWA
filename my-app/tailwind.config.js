@@ -33,6 +33,10 @@ module.exports = {
       medium: 500,
       bold: 600
     },
+    fontFamily: {
+      'montserrat': ['Montserrat'],
+      'roboto': ['Roboto']
+    },
     extend: {},
   },
   variants: {
