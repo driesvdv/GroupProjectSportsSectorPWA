@@ -28,6 +28,11 @@ module.exports = {
       '2xl': '1.75rem',
       '3xl': '2rem'
     },
+    fontWeight: {
+      normal: 400,
+      medium: 500,
+      bold: 600
+    },
     extend: {},
   },
   variants: {
