@@ -19,6 +19,15 @@ module.exports = {
         DEFAULT: '#CF6766'
       }
     },
+    fontSize: {
+      'xs': '.875rem',
+      'sm': '1rem',
+      'base': '1.125rem',
+      'lg': '1.25rem',
+      'xl': '1.5rem',
+      '2xl': '1.75rem',
+      '3xl': '2rem'
+    },
     extend: {},
   },
   variants: {
