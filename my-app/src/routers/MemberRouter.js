@@ -29,7 +29,6 @@ function MemberRouter() {
             <Route exact path={`${path}/:memberId/clubs/:clubId`}>
                 <MemberDetailClubPage/>
             </Route>
-
         </Switch>
     );
 }
