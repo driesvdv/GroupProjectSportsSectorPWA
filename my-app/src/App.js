@@ -4,26 +4,33 @@ import MemberRouter from "./routers/MemberRouter";
 import RegisterPage from "./pages/authentication/RegisterPage";
 import LoginPage from "./pages/authentication/LoginPage";
 import NavBar from "./components/NavBar";
+import {createBrowserHistory} from "history"
+import {AuthContextProvider} from "./context/AuthContext";
+import PrivateRoute from "./components/routes/PrivateRoute";
+
+export const history= createBrowserHistory();
 
 function App() {
     return (
-        <Router>
-            <NavBar/>
-            <Switch>
-                <Route exact path={"/"}>
-                    <Redirect to={"/login"}/>
-                </Route>
-                <Route exact path={"/login"}>
-                    <LoginPage/>
-                </Route>
-                <Route exact path={"/registreren"}>
-                    <RegisterPage/>
-                </Route>
-                <Route path={"/leden"}>
-                    <MemberRouter/>
-                </Route>
-            </Switch>
-        </Router>
+        <AuthContextProvider>
+            <Router history={history}>
+                <NavBar/>
+                <Switch>
+                    <Route exact path={"/"}>
+                        <Redirect to={"/login"}/>
+                    </Route>
+                    <Route exact path={"/login"}>
+                        <LoginPage/>
+                    </Route>
+                    <Route exact path={"/registreren"}>
+                        <RegisterPage/>
+                    </Route>
+                    <PrivateRoute path={"/leden"}>
+                        <MemberRouter/>
+                    </PrivateRoute>
+                </Switch>
+            </Router>
+        </AuthContextProvider>
     );
 }
 
