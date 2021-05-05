@@ -1,6 +1,8 @@
 import axios from 'axios'
+import {history} from "../App";
+
 const axiosInstance = axios.create({
-    baseURL: '', //TODO: baseURL
+    baseURL: 'https://localhost:8000',
     timeout: 5000,
     headers: {
         'Authorization': `JWT ${localStorage.getItem('access_token')}`,
@@ -12,23 +14,8 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
     response => response,
     error => {
-        const originalRequest = error.config;
-
         if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
-            const refresh_token = localStorage.getItem('refresh_token');
-
-            return axiosInstance
-                .post('/token/refresh/', {refresh: refresh_token})
-                .then((response) => {
-
-                    localStorage.setItem('access_token', response.data.access);
-                    localStorage.setItem('refresh_token', response.data.refresh);
-
-                    axiosInstance.defaults.headers['Authorization'] = `JWT ${response.data.access}`;
-                    originalRequest.headers['Authorization'] = `JWT ${response.data.access}`;
-
-                    return axiosInstance(originalRequest);
-                })
+            history.push("/login", {error})
         }
         return Promise.reject(error);
     }

@@ -4,13 +4,16 @@ import MemberRouter from "./routers/MemberRouter";
 import RegisterPage from "./pages/authentication/RegisterPage";
 import LoginPage from "./pages/authentication/LoginPage";
 import NavBar from "./components/NavBar";
+import {createBrowserHistory} from "history"
 import {AuthContextProvider} from "./context/AuthContext";
 import PrivateRoute from "./components/routes/PrivateRoute";
+
+export const history= createBrowserHistory();
 
 function App() {
     return (
         <AuthContextProvider>
-            <Router>
+            <Router history={history}>
                 <NavBar/>
                 <Switch>
                     <Route exact path={"/"}>
