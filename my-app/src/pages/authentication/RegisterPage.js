@@ -1,8 +1,21 @@
 import React from 'react';
+import PolygonWithLogo from "../../components/authentication/PolygonWithLogo";
+import MobileTopPolygon from "../../components/authentication/MobileTopPolygon";
+import Title from "../../components/authentication/Title";
+import MobileBottomPolygon from "../../components/authentication/MobileBottomPolygon";
+import Registerform from "../../components/authentication/Registerform";
 
 function RegisterPage(props) {
     return (
-        <div>registreren</div>
+        <div className={"lg:grid lg:grid-cols-12 gap-4 items-center justify-center h-screen"}>
+            <PolygonWithLogo/>
+            <MobileTopPolygon/>
+            <div className={"lg:col-span-4 z-20 mx-10"}>
+                <Title text={"Account aanmaken"}/>
+                <Registerform/>
+            </div>
+            <MobileBottomPolygon/>
+        </div>
     );
 }
 

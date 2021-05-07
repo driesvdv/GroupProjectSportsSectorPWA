@@ -6,3 +6,11 @@ export function validateEmail(email) {
 export function validatePassword (password) {
     return password !== ""
 }
+
+export function validateName (name) {
+    return name !== ""
+}
+
+export function validatePasswords (password, passwordRepeat) {
+    return password === passwordRepeat
+}

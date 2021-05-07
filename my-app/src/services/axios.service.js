@@ -1,8 +1,8 @@
 import axios from 'axios'
-import {history} from "../App";
+import history from "../helpers/history";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8000',
+    baseURL: 'http://localhost:8000/api/',
     timeout: 5000,
     headers: {
         'Authorization': `JWT ${localStorage.getItem('access_token')}`,

@@ -1,11 +1,11 @@
 import axiosInstance from "./axios.service";
-import {history} from "../App";
+import history from "../helpers/history";
 
 class AuthService {
     login({email, password}) {
-        return axiosInstance.post("/login/", {email, password})
+        return axiosInstance.post("/login", {email, password})
             .then(({data}) => {
-                localStorage.setItem('access_token', data.access);
+                localStorage.setItem('access_token', data["access_token"]);
                 history.push("/leden")
             })
     }
@@ -16,7 +16,7 @@ class AuthService {
     }
 
     register({name, email, password}) {
-        return axiosInstance.post('/register/', {name, email, password})
+        return axiosInstance.post('/register', {name, email, password})
             .then(({data}) => {
                 localStorage.setItem('access_token', data.access);
                 history.push("/leden")
