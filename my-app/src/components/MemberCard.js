@@ -3,18 +3,12 @@ import { Link } from "react-router-dom";
 import moment from 'moment';
 
 function MemberCard({ member }) {
-    const calculateYears = function () {
-        let firstDate = moment() //Create date using string-format constructor
-        let secondDate = moment(member.birthDate);
-        let duration = moment.duration(secondDate.diff(firstDate));
-        return duration.asYears();
-    }
-
     return (
-        <a href={`/members/${member.id}`}>
-            <div>
-                <p>{member.firstName} {member.lastName}</p>
-                <p>{moment.duration(moment().diff(member.birthDate)).asYears().toFixed(0)} jaar</p>
+        <a className={"border-gray p-2 mx-auto shadow flex my-5 rounded hover:shadow-dark"}
+            href={`/members/${member.id}`}>
+            <div className={"pb-2"}>
+                <p className={"font-montserrat font-medium text-lg"}>{member.firstName} {member.lastName}</p>
+                <p className={"text-sm text-green font-normal"}>{moment.duration(moment().diff(member.birthDate)).asYears().toFixed(0)} jaar</p>
             </div>
 
         </a>

@@ -37,6 +37,10 @@ module.exports = {
       'montserrat': ['Montserrat'],
       'roboto': ['Roboto']
     },
+    boxShadow: {
+      DEFAULT: '0 0 10px #C4C4C4',
+      dark: '0 0 10px #333'
+    },
     extend: {},
   },
   variants: {

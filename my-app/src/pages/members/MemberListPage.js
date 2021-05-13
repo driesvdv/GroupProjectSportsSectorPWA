@@ -22,8 +22,8 @@ function MemberListPage(props) {
         birthDate: moment("1995-05-12"),
     }]
     return (
-        <div>
-            <p className={"text-blue-dark text-3xl"}>Members</p>
+        <div className={"w-2/3 mx-auto font-montserrat font-bold text-blue-dark"}>
+            <p className={"text-blue-dark text-3xl"}>Leden</p>
             {members.map((member, index) => {
                 return <MemberCard key={index} member={member} />
             })}
