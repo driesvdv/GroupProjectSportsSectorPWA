@@ -22,11 +22,14 @@ function MemberListPage(props) {
         birthDate: moment("1995-05-12"),
     }]
     return (
-        <div className={"w-2/3 mx-auto font-montserrat font-bold text-blue-dark"}>
-            <p className={"text-blue-dark text-3xl"}>Leden</p>
-            {members.map((member, index) => {
-                return <MemberCard key={index} member={member} />
-            })}
+        <div className={"w-2/3 mx-auto mt-20"}>
+            <p className={"text-blue-dark font-montserrat text-3xl"}>Leden</p>
+            <div className={"ml-4"}>
+                {members.map((member, index) => {
+                    return <MemberCard key={index} member={member} />
+                })}
+            </div>
+
         </div>
     );
 }

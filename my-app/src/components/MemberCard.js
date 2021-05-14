@@ -8,7 +8,7 @@ function MemberCard({ member }) {
             href={`/members/${member.id}`}>
             <div className={"pb-2"}>
                 <p className={"font-montserrat font-medium text-lg"}>{member.firstName} {member.lastName}</p>
-                <p className={"text-sm text-green font-normal"}>{moment.duration(moment().diff(member.birthDate)).asYears().toFixed(0)} jaar</p>
+                <p className={"text-base text-green font-normal"}>{moment.duration(moment().diff(member.birthDate)).asYears().toFixed(0)} jaar</p>
             </div>
 
         </a>
