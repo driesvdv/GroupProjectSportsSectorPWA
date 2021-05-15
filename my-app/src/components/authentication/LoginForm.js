@@ -1,27 +1,35 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import AuthService from "../../services/authentication.service"
 import {validateEmail, validatePassword} from "../../helpers/authentication.helper";
-import { useHistory } from "react-router-dom";
-
+import {useHistory} from "react-router-dom";
 
 function LoginForm() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
+    const [sent, setSent] = useState(false)
     const [login, setLogin] = useState({email: "", password: ""})
     const history = useHistory()
+
     const handleSubmit = (event) => {
         event.preventDefault()
+        setSent(true)
         if (checkFields()) {
             setLoading(true)
             AuthService.login(login, history).catch(({response}) => {
-                console.log(response)
+                    console.log(response.data.message)
+                    setError(true)
+                    setLoading(false)
                 }
-            ).finally(() => {
-                setLoading(false)
-            })
+            )
         }
     }
+
+    useEffect(() => {
+        if (sent) {
+            checkFields()
+        }
+    }, [login, sent])
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -40,14 +48,18 @@ function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} className={"flex flex-col"}>
-            <div className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
-                <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'}/>
-                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"email"} name={"email"}
+            <div
+                className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
+                <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'} alt={"sign in symbol"}/>
+                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"email"}
+                       name={"email"}
                        placeholder={"E-mailadres"} onChange={handleChange}/>
             </div>
-            <div className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
-                <img src={process.env.PUBLIC_URL + '/assets/locked.svg'}/>
-                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"password"} name={"password"}
+            <div
+                className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
+                <img src={process.env.PUBLIC_URL + '/assets/locked.svg'} alt={"lock symbol"}/>
+                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"password"}
+                       name={"password"}
                        placeholder={"Wachtwoord"} onChange={handleChange}/>
             </div>
             <div className={"flex justify-end"}>
