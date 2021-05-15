@@ -3,6 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
+      white: {
+        DEFAULT: '#f9f9f9'
+      },
       blue: {
         DEFAULT: '#114B5F',
         dark: '#25282B',
@@ -47,6 +50,11 @@ module.exports = {
         '20rem': '20rem'
       }
     },
+    boxShadow: {
+      DEFAULT: '0 0 10px #C4C4C4',
+      dark: '0 0 10px #333'
+    },
+    extend: {},
   },
   variants: {
     extend: {},
