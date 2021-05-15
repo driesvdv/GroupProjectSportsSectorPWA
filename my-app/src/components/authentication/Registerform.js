@@ -1,16 +1,17 @@
 import React, {useState} from 'react';
 import AuthService from "../../services/authentication.service";
 import {validateEmail, validateName, validatePassword, validatePasswords} from "../../helpers/authentication.helper";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 function Registerform(props) {
     const [loading, setLoading] = useState(false)
     const [register, setRegister] = useState({name: "",email: "", password: "", repeat_password: ""})
+    const history = useHistory()
     const handleSubmit = (event) => {
         event.preventDefault()
         if (checkFields()) {
             setLoading(true)
-            AuthService.register(register).catch((e) => {
+            AuthService.register(register, history).catch((e) => {
                     console.log(e.message)
                 }
             ).finally(() => {
