@@ -17,6 +17,10 @@ module.exports = {
       },
       red: {
         DEFAULT: '#CF6766'
+      },
+      white: {
+        DEFAULT: "#F9F9F9",
+        light: "#FFFFFF"
       }
     },
     fontSize: {
@@ -37,7 +41,11 @@ module.exports = {
       'montserrat': ['Montserrat'],
       'roboto': ['Roboto']
     },
-    extend: {},
+    extend: {
+      width: {
+        '20rem': '20rem'
+      }
+    },
   },
   variants: {
     extend: {},
