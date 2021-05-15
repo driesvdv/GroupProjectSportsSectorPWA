@@ -3,7 +3,6 @@ import {Switch, Route, Redirect} from "react-router-dom";
 import MemberRouter from "./routers/MemberRouter";
 import RegisterPage from "./pages/authentication/RegisterPage";
 import LoginPage from "./pages/authentication/LoginPage";
-import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/routes/PrivateRoute";
 
 
@@ -11,7 +10,6 @@ import PrivateRoute from "./components/routes/PrivateRoute";
 function App() {
     return (
         <Fragment>
-            <NavBar/>
             <Switch>
                 <Route exact path={"/"}>
                     <Redirect to={"/login"}/>
