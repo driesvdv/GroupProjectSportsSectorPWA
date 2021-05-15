@@ -1,17 +1,14 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Redirect, Route} from "react-router-dom";
-import {AuthContext} from "../../context/AuthContext";
 
-function PrivateRoute({children, ...rest}) {
-    const {user} = useContext(AuthContext)
+function PrivateRoute ({ children, ...rest }) {
     return (
-        <Route {...rest}>
-            {user ? (
-                children
-            ) : (
-                <Redirect to={"/signin"}/>
-            )}
-        </Route>
-    );
+        <Route {...rest} render={() => {
+            return localStorage.getItem("access_token")
+                ? children
+                : <Redirect to='/login' />
+        }} />
+    )
 }
+
 export default PrivateRoute;
