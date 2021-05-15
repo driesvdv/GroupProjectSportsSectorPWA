@@ -2,16 +2,19 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import AuthService from "../../services/authentication.service"
 import {validateEmail, validatePassword} from "../../helpers/authentication.helper";
+import { useHistory } from "react-router-dom";
+
 
 function LoginForm() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [login, setLogin] = useState({email: "", password: ""})
+    const history = useHistory()
     const handleSubmit = (event) => {
         event.preventDefault()
         if (checkFields()) {
             setLoading(true)
-            AuthService.login(login).catch(({response}) => {
+            AuthService.login(login, history).catch(({response}) => {
                 console.log(response)
                 }
             ).finally(() => {
