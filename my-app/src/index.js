@@ -4,12 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
-import {Router} from "react-router-dom";
-import history from "./helpers/history";
+import {BrowserRouter as Router} from "react-router-dom";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router history={history}>
+        <Router>
         <App/>
         </Router>
     </React.StrictMode>,

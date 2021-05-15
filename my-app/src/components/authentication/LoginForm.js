@@ -5,6 +5,7 @@ import {validateEmail, validatePassword} from "../../helpers/authentication.help
 
 function LoginForm() {
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const [login, setLogin] = useState({email: "", password: ""})
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -25,19 +26,25 @@ function LoginForm() {
     }
 
     const checkFields = () => {
-        return validateEmail(login.email) && validatePassword(login.password)
+        setError(false)
+        if (validateEmail(login.email) && validatePassword(login.password)) {
+            return true
+        } else {
+            setError(true)
+        }
+        return false
     }
 
     return (
         <form onSubmit={handleSubmit} className={"flex flex-col"}>
-            <div className={"flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white"}>
+            <div className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
                 <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'}/>
-                <input className={"pl-2 text-base w-full bg-white"} type={"email"} name={"email"}
+                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"email"} name={"email"}
                        placeholder={"E-mailadres"} onChange={handleChange}/>
             </div>
-            <div className={"flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white"}>
+            <div className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
                 <img src={process.env.PUBLIC_URL + '/assets/locked.svg'}/>
-                <input className={"pl-2 text-base w-full bg-white"} type={"password"} name={"password"}
+                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"password"} name={"password"}
                        placeholder={"Wachtwoord"} onChange={handleChange}/>
             </div>
             <div className={"flex justify-end"}>

@@ -1,8 +1,7 @@
 import axiosInstance from "./axios.service";
-import history from "../helpers/history";
 
 class AuthService {
-    login({email, password}) {
+    login({email, password, history}) {
         return axiosInstance.post("/login", {email, password})
             .then(({data}) => {
                 localStorage.setItem('access_token', data["access_token"]);
@@ -15,7 +14,7 @@ class AuthService {
         axiosInstance.defaults.headers['Authorization'] = null;
     }
 
-    register({name, email, password}) {
+    register({name, email, password, history}) {
         return axiosInstance.post('/register', {name, email, password})
             .then(({data}) => {
                 localStorage.setItem('access_token', data.access);
