@@ -10,26 +10,31 @@ function MemberRouter() {
     let {path, url} = useRouteMatch();
 
     return (
-        <Switch>
-            <Route exact path={path}>
-                <MemberListPage/>
-            </Route>
-            <Route exact path={`${path}/add`}>
-                <MemberAddPage/>
-            </Route>
-            <Route exact path={`${path}/:memberId`}>
-                <MemberDetailPage/>
-            </Route>
-            <Route exact path={`${path}/:memberId/clubs`}>
-                <Redirect to={path}/>
-            </Route>
-            <Route exact path={`${path}/:memberId/clubs/add`}>
-                <MemberDetailClubAddPage/>
-            </Route>
-            <Route exact path={`${path}/:memberId/clubs/:clubId`}>
-                <MemberDetailClubPage/>
-            </Route>
-        </Switch>
+        <div>
+            <img className={"top-0 right-0 absolute z-0"} src={process.env.PUBLIC_URL + '/assets/top-large.svg'} />
+
+            <Switch>
+                <Route exact path={path}>
+                    <MemberListPage/>
+                </Route>
+                <Route exact path={`${path}/add`}>
+                    <MemberAddPage/>
+                </Route>
+                <Route exact path={`${path}/:memberId`}>
+                    <MemberDetailPage/>
+                </Route>
+                <Route exact path={`${path}/:memberId/clubs`}>
+                    <Redirect to={path}/>
+                </Route>
+                <Route exact path={`${path}/:memberId/clubs/add`}>
+                    <MemberDetailClubAddPage/>
+                </Route>
+                <Route exact path={`${path}/:memberId/registration/:registrationId`}>
+                    <MemberDetailClubPage/>
+                </Route>
+            </Switch>
+            <img className={"bottom-0 left-0 absolute z-0"} src={process.env.PUBLIC_URL + '/assets/bottom-large.svg'} />
+        </div>
     );
 }
 
