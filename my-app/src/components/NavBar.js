@@ -17,7 +17,8 @@ function NavBar(props) {
                     </div>
                 </a>
             </div>
-            <div className={"sidebar bg-white-light w-64 shadow-lg space-y-6 px-3 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out"}>
+            <div
+                className={"sidebar bg-white-light w-64 shadow-lg space-y-6 px-3 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out"}>
                 <div className={"flex justify-between"}>
                     <a href="/leden" className="flex flex-items-center px-2">
                         <div className={"pr-2"}>
@@ -27,10 +28,10 @@ function NavBar(props) {
                         </div>
                         <span className="text-2xl font-bold">Sport +</span>
                     </a>
-                    <a href="" onClick={toggleSidebar} className="block p-2 ">
-                            <img className={"w-8 h-8"}
-                                 src={process.env.PUBLIC_URL + '/assets/x.svg'}
-                                 alt={"sport plus logo"}/>
+                    <a href="" onClick={toggleSidebar} className="block p-2 md:invisible">
+                        <img className={"w-8 h-8"}
+                             src={process.env.PUBLIC_URL + '/assets/x.svg'}
+                             alt={"sport plus logo"}/>
                     </a>
                 </div>
 
