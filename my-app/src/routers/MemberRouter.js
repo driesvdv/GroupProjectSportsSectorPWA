@@ -12,7 +12,7 @@ function MemberRouter() {
     let { path, url } = useRouteMatch();
 
     return (
-        <div className={"relative min-h-screen flex"}>
+        <div className={"relative min-h-screen md:flex"}>
             <NavBar />
             <Switch>
                 <Route exact path={path}>

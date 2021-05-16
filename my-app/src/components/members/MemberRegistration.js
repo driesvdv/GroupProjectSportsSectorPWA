@@ -33,12 +33,6 @@ const MemberRegistration = () => {
     }
 
     return (
-        <div>
-            {/*mobile menu*/}
-            <div>
-
-            </div>
-            {/*desktop menu*/}
             <div className={"flex flex-col"}>
                 <form onSubmit={handleSubmit()} className={"flex flex-col"}>
                     <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
@@ -48,7 +42,6 @@ const MemberRegistration = () => {
                     </div>
                 </form>
             </div>
-        </div>
     );
 };
 
