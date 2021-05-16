@@ -67,7 +67,7 @@ const MemberRegistration = () => {
                     </select>
                 </div>
                 <input
-                    className={"rounded-full py-2 text-2xl font-bold text-white bg-blue z-20 hover:bg-blue-dark cursor-pointer"}
+                    className={"rounded-full py-2 text-2xl font-bold text-white bg-blue hover:bg-blue-dark cursor-pointer"}
                     type="submit" value={loading ? "Laden..." : "Inschrijven"} disabled={loading}/>
             </form>
         </div>

@@ -37,7 +37,7 @@ function NavBar(props) {
 
 
                 <nav className={"text-lg"}>
-                        <a href=""
+                        <a href="/leden"
                            className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
                             <img className={"w-7 h-7"}
                                  src={process.env.PUBLIC_URL + '/assets/users.svg'}
