@@ -24,9 +24,9 @@ function MemberListPage(props) {
             })
     }, [])
     return (
-        <div className={"w-2/3 mx-auto mt-20"}>
-            <p className={"text-blue-dark font-montserrat text-3xl"}>Leden</p>
-            <div className={"ml-4"}>
+        <div className={"w-2/3 mx-auto mt-20 "}>
+            <p className={"text-blue-dark font-montserrat text-3xl pb-4"}>Leden</p>
+            <div className={"ml-4 px-4 overflow-y-auto max-h-96"}>
                 {members.map((member, index) => {
                     return <MemberCard key={index} member={member} />
                 })}
