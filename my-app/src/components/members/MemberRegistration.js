@@ -28,20 +28,44 @@ const MemberRegistration = () => {
 
     }
 
+    const handleGroupChange = e => {
+
+    }
+
+    const handleTimeChange = e => {
+
+    }
+
     const handleSubmit = e => {
 
     }
 
     return (
-            <div className={"flex flex-col"}>
-                <form onSubmit={handleSubmit()} className={"flex flex-col"}>
-                    <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                        <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'}/>
-                        <input className={`pl-2 text-base w-full bg-white `} type={"email"} name={"email"}
-                               placeholder={"E-mailadres"} onChange={handleClubChange}/>
-                    </div>
-                </form>
-            </div>
+        <div className={"flex flex-col w-64"}>
+            <form onSubmit={handleSubmit()} className={"flex flex-col space-y-10"}>
+                <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'}/>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Club"}
+                            placeholder={"E-mailadres"} onChange={handleClubChange}>
+                        <option value="0" selected disabled>Club</option>
+                    </select>
+                </div>
+                <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'}/>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Group"}
+                            placeholder={"E-mailadres"} onChange={handleGroupChange}>
+                        <option value="0" selected disabled>Groep</option>
+                    </select>
+                </div>
+                <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'}/>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
+                            placeholder={"E-mailadres"} onChange={handleTimeChange}>
+                        <option value="0" selected disabled>Tijdstip</option>
+                    </select>
+                </div>
+            </form>
+        </div>
     );
 };
 
