@@ -7,7 +7,7 @@ function NavBar(props) {
     }
 
     return (
-        <div className={"md:flex"}>
+        <div className={"flex"}>
             <div className={"md:hidden"}>
                 <a href="" onClick={toggleSidebar} className="block p-6">
                     <div className={"pr-2"}>
@@ -37,35 +37,44 @@ function NavBar(props) {
 
 
                 <nav className={"text-lg"}>
-                    <a href=""
-                       className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
-                        <img className={"w-7 h-7"}
-                             src={process.env.PUBLIC_URL + '/assets/users.svg'}
-                             alt={"sport plus logo"}/>
-                        <span>Leden</span>
-                    </a>
-                    <a href=""
-                       className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
-                        <img className={"w-7 h-7"}
-                             src={process.env.PUBLIC_URL + '/assets/user plus.svg'}
-                             alt={"sport plus logo"}/>
-                        <span>Voeg lid toe</span>
-                    </a>
-                    <a href=""
-                       className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
-                        <img className={"w-7 h-7"}
-                             src={process.env.PUBLIC_URL + '/assets/+.svg'}
-                             alt={"sport plus logo"}/>
-                        <span>Voeg groep toe</span>
-                    </a>
-                    <a href=""
-                       className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
-                        <img className={"w-7 h-7"}
-                             src={process.env.PUBLIC_URL + '/assets/home.svg'}
-                             alt={"sport plus logo"}/>
-                        <span>Zie inschrijvingen</span>
-                    </a>
+                        <a href=""
+                           className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
+                            <img className={"w-7 h-7"}
+                                 src={process.env.PUBLIC_URL + '/assets/users.svg'}
+                                 alt={"sport plus logo"}/>
+                            <span>Leden</span>
+                        </a>
+                        <a href=""
+                           className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
+                            <img className={"w-7 h-7"}
+                                 src={process.env.PUBLIC_URL + '/assets/user plus.svg'}
+                                 alt={"sport plus logo"}/>
+                            <span>Voeg lid toe</span>
+                        </a>
+                        <a href=""
+                           className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
+                            <img className={"w-7 h-7"}
+                                 src={process.env.PUBLIC_URL + '/assets/+.svg'}
+                                 alt={"sport plus logo"}/>
+                            <span>Voeg groep toe</span>
+                        </a>
+                        <a href=""
+                           className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
+                            <img className={"w-7 h-7"}
+                                 src={process.env.PUBLIC_URL + '/assets/home.svg'}
+                                 alt={"sport plus logo"}/>
+                            <span>Zie inschrijvingen</span>
+                        </a>
                 </nav>
+                <div className={"text-lg absolute inset-x-0 bottom-0 px-3 py-3"}>
+                    <a href=""
+                       className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
+                        <img className={"w-7 h-7"}
+                             src={process.env.PUBLIC_URL + '/assets/log out.svg'}
+                             alt={"sport plus logo"}/>
+                        <span>Uitloggen</span>
+                    </a>
+                </div>
             </div>
         </div>
     );
