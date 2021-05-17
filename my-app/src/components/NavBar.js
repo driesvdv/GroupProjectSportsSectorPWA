@@ -1,9 +1,18 @@
 import React from 'react';
+import AuthService from "../services/authentication.service";
+import {useHistory} from "react-router-dom";
 
 function NavBar(props) {
+    const history = useHistory()
+
     const toggleSidebar = (e) => {
         e.preventDefault()
         document.querySelector(".sidebar").classList.toggle("-translate-x-full");
+    }
+
+    const logout = (e) => {
+        e.preventDefault()
+        AuthService.logout(history);
     }
 
     return (
@@ -67,7 +76,7 @@ function NavBar(props) {
                         </a>
                 </nav>
                 <div className={"text-lg absolute inset-x-0 bottom-0 px-3 py-3"}>
-                    <a href=""
+                    <a href="" onClick={logout}
                        className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
                         <img className={"w-7 h-7"}
                              src={process.env.PUBLIC_URL + '/assets/log out.svg'}

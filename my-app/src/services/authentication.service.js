@@ -9,9 +9,10 @@ class AuthService {
             })
     }
 
-    logout() {
+    logout(history) {
         localStorage.removeItem('access_token');
         axiosInstance.defaults.headers['Authorization'] = null;
+        history.push("/login")
     }
 
     register({name, email, password}, history) {
