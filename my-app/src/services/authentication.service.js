@@ -4,7 +4,7 @@ class AuthService {
     login({email, password}, history) {
         return axiosInstance.post("/login", {email, password})
             .then(({data}) => {
-                localStorage.setItem('access_token', data["access_token"]);
+                sessionStorage.setItem('access_token', data["access_token"])
                 history.push("/leden")
             })
     }
@@ -18,7 +18,7 @@ class AuthService {
     register({name, email, password}, history) {
         return axiosInstance.post('/register', {name, email, password})
             .then(({data}) => {
-                localStorage.setItem('access_token', data.access);
+                sessionStorage.setItem('access_token', data["access_token"]);
                 history.push("/leden")
             })
     }

@@ -10,7 +10,12 @@ function MemberListPage(props) {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
-        axiosInstance.get('/registrants')
+        let config = {
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
+            }
+        }
+        axiosInstance.get('/registrants', config)
             .then(function (response) {
                 // handle success
                 //console.log(Object.values(response.data)[0])
@@ -30,7 +35,7 @@ function MemberListPage(props) {
             <p className={"text-blue-dark font-montserrat text-3xl pb-4"}>Leden</p>
             <div className={"ml-4 px-4 overflow-y-auto max-h-96"}>
                 {members.map((member, index) => {
-                    return <MemberCard key={index} member={member} />
+                    return <MemberCard key={index} member={member}/>
                 })}
             </div>
             <PlusLink link={"/leden/add"}/>
