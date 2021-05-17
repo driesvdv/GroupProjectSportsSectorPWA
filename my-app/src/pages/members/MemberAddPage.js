@@ -8,13 +8,14 @@ function MemberAddPage(props) {
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
-        birth_date: "",
-        max_registrations: 10
+        birth_date: ""
     })
+    const [loading, setLoading] = useState(false);
     const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading(true);
         console.log(formData)
         axiosInstance.post("/registrants", formData)
             .then(({data}) => {
@@ -29,62 +30,49 @@ function MemberAddPage(props) {
 
 
     return (
-        <div className={"w-2/3 mx-auto mt-20"}>
-            <PageHeader Link={'/leden'} Title={'Leden'} SubTitle={'Toevoegen'}/>
+        <div className={"p-10 text-2xl font-bold md:w-3/5"}>
+            <div className={"space-y-4"}>
+                <PageHeader Link={'/leden'} Title={'Leden'} SubTitle={'Toevoegen'}/>
+            </div>
+            <div className={"flex flex-col md:w-64 md:ml-12 sm:mx-auto"}>
+                <form className={"flex flex-col space-y-10"} onSubmit={e => { handleSubmit(e) }}>
+                    <div className={"border-b-2 border-gray-dark mt-4 py-1 bg-white flex"}>
+                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'}/>
+                        <input
+                            className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
+                            name='first_name'
+                            type='text'
+                            placeholder='Voornaam'
+                            onChange={handleChange}
+                        />
+                    </div>
 
-            <form className={"p-2 my-5"} onSubmit={e => { handleSubmit(e) }}>
-                <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
-                    <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'}/>
-                    <input
-                        className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
-                        name='first_name'
-                        type='text'
-                        placeholder='Voornaam'
-                        onChange={handleChange}
-                    />
-                </div>
+                    <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
+                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'}/>
+                        <input
+                            className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
+                            name='last_name'
+                            type='text'
+                            placeholder='Achternaam'
+                            onChange={handleChange}
+                        />
+                    </div>
 
-                <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
-                    <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'}/>
+                    <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
+                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/calendar.svg'}/>
+                        <input
+                            className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
+                            name='birth_date'
+                            type='date'
+                            placeholder='Geboortedatum'
+                            onChange={handleChange}
+                        />
+                    </div>
                     <input
-                        className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
-                        name='last_name'
-                        type='text'
-                        placeholder='Achternaam'
-                        onChange={handleChange}
-                    />
-                </div>
-                <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
-                    <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/pen.svg'}/>
-                    <input
-                        className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
-                        name='max_registrations'
-                        type='number'
-                        placeholder='Max. inschrijvingen'
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
-                    <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/calendar.svg'}/>
-                    <input
-                        className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
-                        name='birth_date'
-                        type='date'
-                        placeholder='Geboortedatum'
-                        onChange={handleChange}
-                    />
-                </div>
-                <div>
-                    <input
-                        className={
-                            "bg-blue text-white font-bold text-lg px-10 h-16 rounded-full max-w-md cursor-pointer"
-                        }
-                        type='submit'
-                        value='Toevoegen'
-                    />
-                </div>
-            </form>
+                        className={"rounded-full py-2 text-2xl font-bold text-white bg-blue hover:bg-blue-dark cursor-pointer"}
+                        type="submit" value={loading ? "Laden..." : "Toevoegen"} disabled={loading}/>
+                </form>
+            </div>
         </div>
     )
 }
