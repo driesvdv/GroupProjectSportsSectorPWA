@@ -46,6 +46,9 @@ module.exports = {
       'roboto': ['Roboto']
     },
     extend: {
+      maxWidth: {
+        'swoosh': '90%',
+      },
       width: {
         '20rem': '20rem'
       },
