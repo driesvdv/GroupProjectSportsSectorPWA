@@ -16,17 +16,14 @@ function MemberListPage(props) {
             }
         }
         axiosInstance.get('/registrants', config)
-            .then(function (response) {
-                // handle success
-                //console.log(Object.values(response.data)[0])
+            .then(function ({data}) {
+                setMembers(data.data);
                 setIsLoaded(true);
-                setMembers(Object.values(response.data)[0]);
             })
             .catch(function (error) {
-                // handle error
                 console.log(error);
-                setIsLoaded(true);
                 setError(error);
+                setIsLoaded(true);
             })
     }, [])
 
