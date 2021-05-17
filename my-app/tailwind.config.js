@@ -16,7 +16,8 @@ module.exports = {
         dark: '#7B7B7B'
       },
       red: {
-        DEFAULT: '#CF6766'
+        DEFAULT: '#CF6766',
+        light: '#ff8a8a'
       },
       white: {
         DEFAULT: "#F9F9F9",
@@ -48,6 +49,10 @@ module.exports = {
       width: {
         '20rem': '20rem'
       }
+    },
+    boxShadow: {
+      DEFAULT: '0 0 10px #C4C4C4',
+      dark: '0 0 10px #333'
     },
   },
   variants: {
