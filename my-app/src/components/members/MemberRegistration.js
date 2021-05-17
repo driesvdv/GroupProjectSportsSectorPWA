@@ -14,8 +14,8 @@ const MemberRegistration = () => {
     const [times, setTimes] = useState(null);
 
     const [groupId, setGroupId] = useState(null);
-    const [clubId, setClubId] = useState(null);
-    const [groupName, setGroupName] = useState(null);
+    const [clubId, setClubId] = useState('DEFAULT');
+    const [groupName, setGroupName] = useState('DEFAULT');
 
     window.Pusher = require('pusher-js');
 
@@ -59,7 +59,9 @@ const MemberRegistration = () => {
 
     const handleClubChange = ({target}) => {
         let id = target.children[target.selectedIndex].value
-        setClubId(id);
+        setClubId(id)
+        setGroupName("DEFAULT")
+        setGroupId("DEFAULT")
 
         axiosInstance
             .get('/groups/' + id)
@@ -75,6 +77,7 @@ const MemberRegistration = () => {
     const handleGroupChange = ({target}) => {
         let name = target.children[target.selectedIndex].value
         setGroupName(name);
+        setGroupId("DEFAULT")
 
         setTimes(groups.filter(group => group.name === name)
             .map((data, index) => <option key={index} data-group-id={data.id}
@@ -112,8 +115,8 @@ const MemberRegistration = () => {
                 </div>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'}/>
-                    <select className={`pl-2 text-base w-full bg-white `} name={"Group"}
-                            placeholder={"E-mailadres"} onChange={handleGroupChange} defaultValue={'DEFAULT'}>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Group"} value={groupName}
+                            placeholder={"E-mailadres"} onChange={handleGroupChange}>
                         <option value="DEFAULT" selected disabled>Groep</option>
                         {groupNames}
                     </select>
@@ -121,7 +124,7 @@ const MemberRegistration = () => {
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
-                            placeholder={"E-mailadres"} onChange={handleTimeChange} defaultValue={'DEFAULT'}>
+                            placeholder={"E-mailadres"} onChange={handleTimeChange} value={groupId}>
                         <option value="DEFAULT" selected disabled>Tijdstip</option>
                         {times}
                     </select>
