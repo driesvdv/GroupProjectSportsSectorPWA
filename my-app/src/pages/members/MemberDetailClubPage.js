@@ -30,7 +30,7 @@ function MemberDetailClubPage(props) {
     }, [])
 
     useEffect(() => {
-        axiosInstance.get(`/groups/${registration.group_id}`)
+        axiosInstance.get(`/group/${registration.group_id}`)
             .then(function (response) {
                 // handle success
                 console.log(Object.values(response.data)[0])
