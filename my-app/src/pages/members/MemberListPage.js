@@ -8,6 +8,7 @@ function MemberListPage(props) {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [members, setMembers] = useState([]);
+
     useEffect(() => {
         axiosInstance.get('/registrants')
             .then(function (response) {
@@ -23,6 +24,7 @@ function MemberListPage(props) {
                 setError(error);
             })
     }, [])
+
     return (
         <div className={"w-2/3 mx-auto mt-20 "}>
             <p className={"text-blue-dark font-montserrat text-3xl pb-4"}>Leden</p>

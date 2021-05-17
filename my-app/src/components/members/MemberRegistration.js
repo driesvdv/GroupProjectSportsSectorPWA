@@ -7,8 +7,6 @@ import PageHeader from "../PageHeader";
 const MemberRegistration = () => {
     let {memberId} = useParams();
 
-    const [registrant, setRegistrant] = useState(null);
-
     const [loading, setLoading] = useState(false);
 
     const [clubs, setClubs] = useState(null);
@@ -49,11 +47,6 @@ const MemberRegistration = () => {
         );
 
     useEffect(() => {
-        axiosInstance
-            .get('/registrants/' + memberId)
-            .then(({data}) => {
-                setRegistrant(data.data)
-            })
         axiosInstance
             .get('/club/sportclubs')
             .then(({data}) => {
@@ -109,41 +102,37 @@ const MemberRegistration = () => {
     }
 
     return (
-        <div className={"space-y-4"}>
-            <PageHeader Link={`/leden/${memberId}`}
-                        Title={registrant?.full_name}
-                        SubTitle={'Toevoegen aan club'}/>
-            <div className={"flex flex-col md:w-64 md:ml-12 sm:mx-auto"}>
-                <form onSubmit={handleSubmit} className={"flex flex-col space-y-10"}>
-                    <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                        <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'}/>
-                        <select className={`pl-2 text-base w-full bg-white `} name={"Club"}
-                                placeholder={"E-mailadres"} onChange={handleClubChange} defaultValue={'DEFAULT'}>
-                            <option value="DEFAULT" selected disabled>Club</option>
-                            {clubs}
-                        </select>
-                    </div>
-                    <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                        <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'}/>
-                        <select className={`pl-2 text-base w-full bg-white `} name={"Group"} value={groupName}
-                                placeholder={"E-mailadres"} onChange={handleGroupChange}>
-                            <option value="DEFAULT" selected disabled>Groep</option>
-                            {groupNames}
-                        </select>
-                    </div>
-                    <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                        <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'}/>
-                        <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
-                                placeholder={"E-mailadres"} onChange={handleTimeChange} value={groupId}>
-                            <option value="DEFAULT" selected disabled>Tijdstip</option>
-                            {times}
-                        </select>
-                    </div>
-                    <input
-                        className={"rounded-full py-2 text-2xl font-bold text-white bg-blue hover:bg-blue-dark cursor-pointer"}
-                        type="submit" value={loading ? "Laden..." : "Inschrijven"} disabled={loading}/>
-                </form>
-            </div>
+
+        <div className={"flex flex-col md:w-64 md:ml-12 sm:mx-auto"}>
+            <form onSubmit={handleSubmit} className={"flex flex-col space-y-10"}>
+                <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'}/>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Club"}
+                            placeholder={"E-mailadres"} onChange={handleClubChange} defaultValue={'DEFAULT'}>
+                        <option value="DEFAULT" selected disabled>Club</option>
+                        {clubs}
+                    </select>
+                </div>
+                <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'}/>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Group"} value={groupName}
+                            placeholder={"E-mailadres"} onChange={handleGroupChange}>
+                        <option value="DEFAULT" selected disabled>Groep</option>
+                        {groupNames}
+                    </select>
+                </div>
+                <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'}/>
+                    <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
+                            placeholder={"E-mailadres"} onChange={handleTimeChange} value={groupId}>
+                        <option value="DEFAULT" selected disabled>Tijdstip</option>
+                        {times}
+                    </select>
+                </div>
+                <input
+                    className={"rounded-full py-2 text-2xl font-bold text-white bg-blue hover:bg-blue-dark cursor-pointer"}
+                    type="submit" value={loading ? "Laden..." : "Inschrijven"} disabled={loading}/>
+            </form>
         </div>
     );
 };
