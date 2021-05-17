@@ -19,11 +19,11 @@ function MemberDetailPage(props) {
     }, [])
 
     return (
-        <div className={"p-10 text-2xl font-bold w-3/5"}>
+        <div className={"p-10 text-2xl font-bold md:w-3/5"}>
             <div className={"space-y-4"}>
                 <PageHeader Link={`/leden/${memberId}`}
                             Title={registrant?.full_name}
-                            SubTitle={'Toevoegen aan club'}/>
+                            SubTitle={registrant?.birth_date}/>
             </div>
             <MemberList/>
             <PlusLink link={`${memberId}/clubs/add`}/>

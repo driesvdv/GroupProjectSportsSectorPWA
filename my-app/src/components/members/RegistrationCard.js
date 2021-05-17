@@ -5,7 +5,7 @@ const RegistrationCard = ({ registration }) => {
     let {memberId} = useParams();
 
     return (
-        <div className={'ml-12'}>
+        <div className={'md:ml-12'}>
             <NavLink to={`/leden/${memberId}/clubs/${registration.club.id}`} className={"border-gray p-2 mx-auto shadow flex justify-between my-5 z-30 rounded-lg hover:shadow-dark bg-white"}>
                 <div className={"pb-2"}>
                     <p className={"font-montserrat font-medium text-lg"}>{registration.club.name}</p>
