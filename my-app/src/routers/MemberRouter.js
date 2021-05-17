@@ -13,7 +13,7 @@ function MemberRouter() {
 
     return (
         <div className={"relative min-h-screen md:flex"}>
-            <img className={"top-0 right-0 absolute -z-10"} src={process.env.PUBLIC_URL + '/assets/top-large.svg'} />
+            <img className={"top-0 right-0 max-w-swoosh absolute -z-10"} src={process.env.PUBLIC_URL + '/assets/top-large.svg'} />
             <NavBar />
             <Switch>
                 <Route exact path={path}>
