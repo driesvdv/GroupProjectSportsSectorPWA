@@ -117,7 +117,7 @@ const MemberRegistration = () => {
                     <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Group"} value={groupName}
                             placeholder={"E-mailadres"} onChange={handleGroupChange}>
-                        <option value="DEFAULT" selected disabled>Groep</option>
+                        <option value="DEFAULT" disabled>Groep</option>
                         {groupNames}
                     </select>
                 </div>
@@ -125,7 +125,7 @@ const MemberRegistration = () => {
                     <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
                             placeholder={"E-mailadres"} onChange={handleTimeChange} value={groupId}>
-                        <option value="DEFAULT" selected disabled>Tijdstip</option>
+                        <option value="DEFAULT" disabled>Tijdstip</option>
                         {times}
                     </select>
                 </div>
