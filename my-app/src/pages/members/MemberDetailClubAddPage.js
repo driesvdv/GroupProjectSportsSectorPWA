@@ -1,28 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import Echo from "laravel-echo"
+import MemberRegistration from "../../components/members/MemberRegistration";
+import PageHeader from "../../components/PageHeader";
+import axiosInstance from "../../services/axios.service";
 
 function MemberDetailClubAddPage(props) {
     let {memberId} = useParams();
 
-    window.Pusher = require('pusher-js');
+    const [registrant, setRegistrant] = useState(null);
 
-    window.Echo = new Echo({
-        broadcaster: 'pusher',
-        key: '5070279b-cd35-4b59-9fe7-d52e3bbd7674',
-        wsHost: window.location.hostname,
-        wsPort: 6001,
-        forceTLS: false,
-        disableStats: true,
-    });
-
-    window.Echo.channel(`groups.2`)
-        .listen('RegistrationAdded', (e) => {
-            console.log(e)
-        })
+    useEffect(() => {
+        axiosInstance
+            .get('/registrants/' + memberId)
+            .then(({data}) => {
+                setRegistrant(data.data)
+            })
+    }, [])
 
     return (
-        <div>member detail add club</div>
+        <div className={"p-10 text-2xl font-bold md:w-3/5"}>
+            <div className={"space-y-4"}>
+                <PageHeader Link={`/leden/${memberId}`}
+                            Title={registrant?.full_name}
+                            SubTitle={'Toevoegen aan club'}/>
+            </div>
+            <MemberRegistration/>
+        </div>
     );
 }
 

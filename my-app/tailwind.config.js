@@ -22,6 +22,9 @@ module.exports = {
       white: {
         DEFAULT: "#F9F9F9",
         light: "#FFFFFF"
+      },
+      grey: {
+        DEFAULT: "#F2F2F2",
       }
     },
     fontSize: {
@@ -45,7 +48,14 @@ module.exports = {
     extend: {
       width: {
         '20rem': '20rem'
+      },
+      zIndex: {
+        '-10': '-10',
       }
+    },
+    boxShadow: {
+      DEFAULT: '0 0 10px #C4C4C4',
+      dark: '0 0 10px #333'
     },
   },
   variants: {
