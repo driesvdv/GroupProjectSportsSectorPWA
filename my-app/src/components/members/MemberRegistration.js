@@ -1,11 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Echo from "laravel-echo";
 import {useParams} from "react-router-dom";
+import axiosInstance from "../../services/axios.service";
 
 const MemberRegistration = () => {
     let {memberId} = useParams();
 
     const [loading, setLoading] = useState(false);
+
+    const [clubs, setClubs] = useState(null);
+    const [groups, setGroups] = useState(null);
+    const [groupNames, setGroupnames] = useState(null);
+    const [times, setTimes] = useState(null);
 
     const [groupId, setGroupId] = useState(null);
     const [clubId, setClubId] = useState(null);
@@ -26,44 +32,89 @@ const MemberRegistration = () => {
             console.log(e)
         });
 
-    const handleClubChange = e => {
+    useEffect(() => {
+        axiosInstance.get('/club/sportclubs')
+            .then(({data}) => {
+                let array = data.data;
+                setClubs(array.map(e => {
+                    return <option key={e.id} value={e.id}>{e.name}</option>
+                }))
+            })
+    }, [])
 
+    const handleClubChange = ({target}) => {
+        let id = target.children[target.selectedIndex].value
+        console.log("The club id is: " + id)
+
+        axiosInstance.get('/groups/' + id)
+            .then(({data}) => {
+                console.log(data)
+                // data = Array.from(new Set(data.map((group, index) => {
+                //     return group.name;
+                // })))
+                // console.log(data)
+                setGroups(data)
+                setGroupnames(Array.from(new Set(data.map(group => group.name)))
+                    .map((group, index) => {
+                        return <option key={index} value={group}>{group}</option>
+                    }))
+            })
     }
 
-    const handleGroupChange = e => {
+    const handleGroupChange = ({target}) => {
+        let name = target.children[target.selectedIndex].value
 
+        setTimes(groups.filter(group => {
+            return group.name === name;
+        }).map((data, index) => {
+            return <option key={index} data-group-id={data.id} value={data.time}>{data.time}</option>
+        }))
     }
 
-    const handleTimeChange = e => {
-
+    const handleTimeChange = ({target}) => {
+        setGroupId(target.children[target.selectedIndex].dataset.groupId)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
+        axiosInstance.post('/registrations', {
+            "group_id": groupId,
+            "registrant_id": memberId
+        })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
         <div className={"flex flex-col w-64"}>
-            <form onSubmit={handleSubmit()} className={"flex flex-col space-y-10"}>
+            <form onSubmit={handleSubmit} className={"flex flex-col space-y-10"}>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Club"}
-                            placeholder={"E-mailadres"} onChange={handleClubChange}>
-                        <option value="0" selected disabled>Club</option>
+                            placeholder={"E-mailadres"} onChange={handleClubChange} defaultValue={'DEFAULT'}>
+                        <option value="DEFAULT" selected disabled>Club</option>
+                        {clubs}
                     </select>
                 </div>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Group"}
-                            placeholder={"E-mailadres"} onChange={handleGroupChange}>
-                        <option value="0" selected disabled>Groep</option>
+                            placeholder={"E-mailadres"} onChange={handleGroupChange} defaultValue={'DEFAULT'}>
+                        <option value="DEFAULT" selected disabled>Groep</option>
+                        {groupNames}
                     </select>
                 </div>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
-                            placeholder={"E-mailadres"} onChange={handleTimeChange}>
-                        <option value="0" selected disabled>Tijdstip</option>
+                            placeholder={"E-mailadres"} onChange={handleTimeChange} defaultValue={'DEFAULT'}>
+                        <option value="DEFAULT" selected disabled>Tijdstip</option>
+                        {times}
                     </select>
                 </div>
                 <input
