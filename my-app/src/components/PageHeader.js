@@ -9,7 +9,7 @@ function PageHeader({ Link, Title, SubTitle }) {
             </NavLink>
             <div className={"border-l-2 p-2 border-gray-dark flex-grow w-32 z-30"}>
                 <p className={"text-blue-dark font-montserrat text-3xl font-bold p-1"}>{Title}</p>
-                <p className={"text-green font-montserrat font-normal p-1"}>{SubTitle}</p>
+                <p className={"text-green font-montserrat font-normal p-1 text-sm"}>{SubTitle}</p>
             </div>
         </div>
 
