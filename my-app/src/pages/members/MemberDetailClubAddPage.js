@@ -18,7 +18,7 @@ function MemberDetailClubAddPage(props) {
     }, [])
 
     return (
-        <div className={"p-10 text-2xl font-bold"}>
+        <div className={"p-10 text-2xl font-bold md:w-3/5"}>
             <div className={"space-y-4"}>
                 <PageHeader Link={`/leden/${memberId}`}
                             Title={registrant?.full_name}
