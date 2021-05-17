@@ -48,6 +48,9 @@ module.exports = {
     extend: {
       width: {
         '20rem': '20rem'
+      },
+      zIndex: {
+        '-10': '-10',
       }
     },
     boxShadow: {
