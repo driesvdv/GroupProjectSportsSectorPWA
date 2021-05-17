@@ -7,7 +7,7 @@ import PageHeader from "../PageHeader";
 const MemberRegistration = () => {
     let {memberId} = useParams();
 
-    const [registrant, setRegistrant] = useState( null);
+    const [registrant, setRegistrant] = useState(null);
 
     const [loading, setLoading] = useState(false);
 
@@ -17,7 +17,6 @@ const MemberRegistration = () => {
     const [times, setTimes] = useState(null);
 
     const [groupId, setGroupId] = useState(null);
-    const [clubId, setClubId] = useState('DEFAULT');
     const [groupName, setGroupName] = useState('DEFAULT');
 
     window.Pusher = require('pusher-js');
@@ -54,7 +53,7 @@ const MemberRegistration = () => {
             .get('/registrants/' + memberId)
             .then(({data}) => {
                 setRegistrant(data.data)
-        })
+            })
         axiosInstance
             .get('/club/sportclubs')
             .then(({data}) => {
@@ -67,7 +66,6 @@ const MemberRegistration = () => {
 
     const handleClubChange = ({target}) => {
         let id = target.children[target.selectedIndex].value
-        setClubId(id)
         setGroupName("DEFAULT")
         setGroupId("DEFAULT")
 
