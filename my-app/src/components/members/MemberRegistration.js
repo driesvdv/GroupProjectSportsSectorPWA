@@ -14,7 +14,7 @@ const MemberRegistration = () => {
     const [groupNames, setGroupnames] = useState(null);
     const [times, setTimes] = useState(null);
 
-    const [groupId, setGroupId] = useState(null);
+    const [groupId, setGroupId] = useState('DEFAULT');
     const [groupName, setGroupName] = useState('DEFAULT');
 
     window.Pusher = require('pusher-js');
