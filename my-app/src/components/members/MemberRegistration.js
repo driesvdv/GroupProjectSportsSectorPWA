@@ -14,7 +14,6 @@ const MemberRegistration = () => {
     const [times, setTimes] = useState(null);
 
     const [groupId, setGroupId] = useState(null);
-    const [clubId, setClubId] = useState(null);
 
     window.Pusher = require('pusher-js');
 
@@ -48,11 +47,6 @@ const MemberRegistration = () => {
 
         axiosInstance.get('/groups/' + id)
             .then(({data}) => {
-                console.log(data)
-                // data = Array.from(new Set(data.map((group, index) => {
-                //     return group.name;
-                // })))
-                // console.log(data)
                 setGroups(data)
                 setGroupnames(Array.from(new Set(data.map(group => group.name)))
                     .map((group, index) => {
@@ -64,11 +58,10 @@ const MemberRegistration = () => {
     const handleGroupChange = ({target}) => {
         let name = target.children[target.selectedIndex].value
 
-        setTimes(groups.filter(group => {
-            return group.name === name;
-        }).map((data, index) => {
-            return <option key={index} data-group-id={data.id} value={data.time}>{data.time} {data.free_spaces} plaatsen beschikbaar</option>
-        }))
+        setTimes(groups.filter(group => group.name === name)
+            .map((data, index) => <option key={index} data-group-id={data.id}
+                                          value={data.time}>{data.time} {data.free_spaces} plaatsen beschikbaar</option>
+            ))
     }
 
     const handleTimeChange = ({target}) => {
@@ -82,12 +75,8 @@ const MemberRegistration = () => {
             "group_id": groupId,
             "registrant_id": memberId
         })
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
     }
 
     return (
