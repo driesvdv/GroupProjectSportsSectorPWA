@@ -10,12 +10,8 @@ function MemberListPage(props) {
     const [members, setMembers] = useState([]);
 
     useEffect(() => {
-        let config = {
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`
-            }
-        }
-        axiosInstance.get('/registrants', config)
+
+        axiosInstance.get('/registrants')
             .then(function ({data}) {
                 setMembers(data.data);
                 setIsLoaded(true);
