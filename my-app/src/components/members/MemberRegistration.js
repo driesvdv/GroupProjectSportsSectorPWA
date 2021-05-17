@@ -67,7 +67,7 @@ const MemberRegistration = () => {
         setTimes(groups.filter(group => {
             return group.name === name;
         }).map((data, index) => {
-            return <option key={index} data-group-id={data.id} value={data.time}>{data.time}</option>
+            return <option key={index} data-group-id={data.id} value={data.time}>{data.time} {data.free_spaces} plaatsen beschikbaar</option>
         }))
     }
 
