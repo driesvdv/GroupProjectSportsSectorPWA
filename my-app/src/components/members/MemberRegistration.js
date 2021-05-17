@@ -14,6 +14,8 @@ const MemberRegistration = () => {
     const [times, setTimes] = useState(null);
 
     const [groupId, setGroupId] = useState(null);
+    const [clubId, setClubId] = useState(null);
+    const [groupName, setGroupName] = useState(null);
 
     window.Pusher = require('pusher-js');
 
@@ -24,15 +26,29 @@ const MemberRegistration = () => {
         wsPort: 6001,
         forceTLS: false,
         disableStats: true,
+        enabledTransports: ['ws', 'wss']
     });
 
     window.Echo.channel(`groups`)
-        .listen('RegistrationAdded', (e) => {
-            console.log(e)
-        });
+        .listen('RegistrationAdded', ({group}) => {
+                if (groups) {
+                    let newArr = [...groups];
+                    newArr[newArr.findIndex(x => x.id === group.id)] = group;
+                    setGroups(newArr)
+                    setTimes(newArr.filter(group => group.name === groupName)
+                        .map((data, index) => <option key={index}
+                                                      data-group-id={data.id}
+                                                      disabled={data.free_spaces === 0}
+                                                      value={data.time}>{data.time} ({data.free_spaces} plaatsen
+                            beschikbaar)</option>
+                        ))
+                }
+            }
+        );
 
     useEffect(() => {
-        axiosInstance.get('/club/sportclubs')
+        axiosInstance
+            .get('/club/sportclubs')
             .then(({data}) => {
                 let array = data.data;
                 setClubs(array.map(e => {
@@ -43,9 +59,10 @@ const MemberRegistration = () => {
 
     const handleClubChange = ({target}) => {
         let id = target.children[target.selectedIndex].value
-        console.log("The club id is: " + id)
+        setClubId(id);
 
-        axiosInstance.get('/groups/' + id)
+        axiosInstance
+            .get('/groups/' + id)
             .then(({data}) => {
                 setGroups(data)
                 setGroupnames(Array.from(new Set(data.map(group => group.name)))
@@ -57,10 +74,13 @@ const MemberRegistration = () => {
 
     const handleGroupChange = ({target}) => {
         let name = target.children[target.selectedIndex].value
+        setGroupName(name);
 
         setTimes(groups.filter(group => group.name === name)
             .map((data, index) => <option key={index} data-group-id={data.id}
-                                          value={data.time}>{data.time} {data.free_spaces} plaatsen beschikbaar</option>
+                                          disabled={data.free_spaces === 0}
+                                          value={data.time}>{data.time} ({data.free_spaces} plaatsen
+                beschikbaar)</option>
             ))
     }
 
