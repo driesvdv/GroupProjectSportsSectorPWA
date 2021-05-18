@@ -22,15 +22,11 @@ function MemberRouter() {
                 <Route exact path={`${path}/add`}>
                     <MemberAddPage />
                 </Route>
-                <Route exact path={`${path}/:memberId`}>
-                    <MemberDetailPage />
-                </Route>
+                <Route exact path={`${path}/:memberId`} component={MemberDetailPage}/>
                 <Route exact path={`${path}/:memberId/clubs`}>
                     <Redirect to={path} />
                 </Route>
-                <Route exact path={`${path}/:memberId/clubs/add`}>
-                    <MemberDetailClubAddPage />
-                </Route>
+                <Route exact path={`${path}/:memberId/clubs/add`} component={MemberDetailClubAddPage} />
                 <Route exact path={`${path}/:memberId/clubs/:clubId`}>
                     <MemberDetailClubPage />
                 </Route>
