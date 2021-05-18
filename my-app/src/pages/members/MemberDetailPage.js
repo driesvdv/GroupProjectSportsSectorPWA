@@ -8,7 +8,7 @@ import PlusLink from "../../components/PlusLink";
 function MemberDetailPage(props) {
     let {memberId} = useParams();
 
-    const [registrant, setRegistrant] = useState(null);
+    const [registrant, setRegistrant] = useState(props.location.aboutProps?.registrant);
 
     useEffect(() => {
         axiosInstance
@@ -26,7 +26,7 @@ function MemberDetailPage(props) {
                             SubTitle={registrant?.birth_date}/>
             </div>
             <MemberList/>
-            <PlusLink link={`${memberId}/clubs/add`}/>
+            <PlusLink link={`${memberId}/clubs/add`} registrant={registrant}/>
         </div>
     );
 }

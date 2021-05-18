@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Echo from "laravel-echo";
-import {useParams} from "react-router-dom";
+import {useHistory, useParams} from "react-router-dom";
 import axiosInstance from "../../services/axios.service";
 import PageHeader from "../PageHeader";
 
 const MemberRegistration = () => {
     let {memberId} = useParams();
+    const history = useHistory()
 
     const [loading, setLoading] = useState(false);
 
@@ -92,18 +93,26 @@ const MemberRegistration = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setLoading(true)
         axiosInstance.post('/registrations', {
             "group_id": groupId,
             "registrant_id": memberId
         })
-            .then(response => console.log(response))
-            .catch(error => console.log(error))
+            .then(response => {
+                console.log(response)
+                setLoading(false)
+                history.push(`/leden/${memberId}`)
+            })
+            .catch(error => {
+                console.log(error)
+                setLoading(false)
+                alert('Vul alle velden in')
+            })
     }
 
     return (
 
-        <div className={"flex flex-col md:w-64 md:ml-12 sm:mx-auto"}>
+        <div className={"flex flex-col   md:max-w-sm md:ml-12 sm:mx-auto"}>
             <form onSubmit={handleSubmit} className={"flex flex-col space-y-10"}>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'}/>
@@ -129,9 +138,11 @@ const MemberRegistration = () => {
                         {times}
                     </select>
                 </div>
-                <input
+                <button
                     className={"rounded-full py-2 text-2xl font-bold text-white bg-blue hover:bg-blue-dark cursor-pointer"}
-                    type="submit" value={loading ? "Laden..." : "Inschrijven"} disabled={loading}/>
+                    type="submit" disabled={loading}>
+                    {loading ? 'Laden...' : "Inschrijven"}
+                </button>
             </form>
         </div>
     );

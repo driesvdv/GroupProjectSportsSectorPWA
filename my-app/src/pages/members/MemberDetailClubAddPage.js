@@ -7,7 +7,7 @@ import axiosInstance from "../../services/axios.service";
 function MemberDetailClubAddPage(props) {
     let {memberId} = useParams();
 
-    const [registrant, setRegistrant] = useState(null);
+    const [registrant, setRegistrant] = useState(props.location.aboutProps?.registrant);
 
     useEffect(() => {
         axiosInstance
