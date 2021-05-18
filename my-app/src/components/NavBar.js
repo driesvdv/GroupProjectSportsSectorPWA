@@ -18,8 +18,8 @@ function NavBar(props) {
 
     return (
         <div className={"flex"}>
-            <div className={"md:hidden"}>
-                <a href="" onClick={toggleSidebar} className="block p-6">
+            <div className={"md:hidden z-20"}>
+                <a href="" onClick={toggleSidebar} className="fixed p-6 pt-8">
                     <div className={"pr-2"}>
                         <img className={"w-7 h-7"}
                              src={process.env.PUBLIC_URL + '/assets/hamburger.svg'}
@@ -28,16 +28,16 @@ function NavBar(props) {
                 </a>
             </div>
             <div
-                className={"sidebar bg-white-light w-64 shadow-lg space-y-6 px-3 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out"}>
+                className={"sidebar z-20 bg-white-light w-64 shadow-lg space-y-6 px-3 py-7 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out"}>
                 <div className={"flex justify-between"}>
-                    <a href="/leden" className="flex flex-items-center px-2">
+                    <Link to="/leden" className="flex flex-items-center px-2">
                         <div className={"pr-2"}>
                             <img className={"w-11 h-11"}
                                  src={process.env.PUBLIC_URL + '/assets/logo.svg'}
                                  alt={"sport plus logo"}/>
                         </div>
                         <span className="text-2xl font-bold">Sport +</span>
-                    </a>
+                    </Link>
                     <a href="" onClick={toggleSidebar} className="block p-2 md:invisible">
                         <img className={"w-8 h-8"}
                              src={process.env.PUBLIC_URL + '/assets/x.svg'}

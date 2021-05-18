@@ -18,7 +18,7 @@ function LoginForm() {
             setLoading(true)
             AuthService.login(login, history).catch(({response}) => {
                     console.log(response.data.message)
-                    setError(true)
+                    setError(response.data.message)
                     setLoading(false)
                 }
             )
@@ -41,7 +41,7 @@ function LoginForm() {
         if (validateEmail(login.email) && validatePassword(login.password)) {
             return true
         } else {
-            setError(true)
+            setError("Invalid credentials")
         }
         return false
     }
@@ -62,12 +62,13 @@ function LoginForm() {
                        name={"password"}
                        placeholder={"Wachtwoord"} onChange={handleChange}/>
             </div>
-            <div className={"flex justify-end"}>
+            <div className={"flex justify-between"}>
+                <p className={"mt-4 text-red"}>{error}</p>
                 <Link className={"text-s font-thin text-blue underline mb-14 mt-4 hover:text-blue-dark"}
                       to={"/registreren"}>Account aanmaken</Link>
             </div>
             <input
-                className={"rounded-full py-2 text-2xl font-bold text-white bg-blue z-20 hover:bg-blue-dark cursor-pointer"}
+                className={"transition duration-200 ease-in-out rounded-full py-2 text-2xl font-bold text-white bg-blue z-20  hover:shadow-dark cursor-pointer"}
                 type="submit" value={loading ? "Laden..." : "Inloggen"} disabled={loading}/>
         </form>
     );

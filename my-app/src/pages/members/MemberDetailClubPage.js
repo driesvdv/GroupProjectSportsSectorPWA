@@ -4,74 +4,49 @@ import PageHeader from "../../components/PageHeader";
 import axiosInstance from "../../services/axios.service";
 
 function MemberDetailClubPage(props) {
-    let {memberId, registrationId} = useParams();
-
+    let {memberId, clubId} = useParams();
+    const [registration, setRegistration] = useState(props.location.aboutProps?.registration);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [registration, setRegistration] = useState({});
-    const [group, setGroup] = useState({name: 'groepsnaam'});
-    const [sportclub, setSportclub] = useState({name: 'sportclub'})
-    const [sport, setSport] = useState({name: 'sport'})
 
     useEffect(() => {
-        axiosInstance.get(`/registrants/${memberId}/registrations/${registrationId}`)
-            .then(function (response) {
-                // handle success
-                console.log(Object.values(response.data)[0])
-                setIsLoaded(true);
-                setRegistration(Object.values(response.data)[0]);
+        axiosInstance.get(`/registrants/${memberId}/registrations/${clubId}`)
+            .then(function ({data}) {
+                setRegistration(data.data)
             })
-            .catch(function (error) {
-                // handle error
+            .catch((error) => {
                 console.log(error);
-                setIsLoaded(true);
                 setError(error);
-            })
+            }).finally(() => {
+            setIsLoaded(true)
+        })
     }, [])
 
-    useEffect(() => {
-        axiosInstance.get(`/group/${registration.group_id}`)
-            .then(function (response) {
-                // handle success
-                console.log(Object.values(response.data)[0])
-                setIsLoaded(true);
-                let group = Object.values(response.data)[0]
-                setGroup(group);
-                setSportclub(group.sportclub)
-                setSport(group.sportclub.sport)
-
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-                setIsLoaded(true);
-                setError(error);
-            })
-    }, [registration])
-
     return (
-        <div className={"w-2/3 mx-auto mt-20 font-montserrat"}>
-            <PageHeader Link={`/leden/${memberId}`}
-                        Title={sportclub.name}
-                        SubTitle={group.name}/>
-            <p className={"text-2xl font-medium"}>Overzicht</p>
-            <div className={"max-w-lg font-normal"}>
-                <div className={"flex justify-between"}>
-                    <p>Sport</p>
-                    <p>{sport.name}</p>
-                </div>
-                <div className={"flex justify-between"}>
-                    <p>Start Datum</p>
-                    <p>21/03/1998</p>
-                </div>
-                <div className={"flex justify-between"}>
-                    <p>Betaling</p>
-                    {registration.has_paid ? (
-                        <img src={process.env.PUBLIC_URL + '/assets/approved.svg'}/>
-                    ) : (
-                        <img src={process.env.PUBLIC_URL + '/assets/rejected.svg'}/>
-                    )}
-                </div>
+        <div className={"p-10 text-2xl font-bold md:w-3/5"}>
+            <div className={"space-y-4"}>
+                <PageHeader link={`/leden/${memberId}`}
+                            title={registration?.club.name}
+                            subtitle={registration?.group.name}/>
+                {/*<p className={"text-2xl font-medium"}>Overzicht</p>*/}
+                {/*<div className={"max-w-lg font-normal"}>*/}
+                {/*    <div className={"flex justify-between"}>*/}
+                {/*        <p>Sport</p>*/}
+                {/*        <p>{sport.name}</p>*/}
+                {/*    </div>*/}
+                {/*    <div className={"flex justify-between"}>*/}
+                {/*        <p>Start Datum</p>*/}
+                {/*        <p>21/03/1998</p>*/}
+                {/*    </div>*/}
+                {/*    <div className={"flex justify-between"}>*/}
+                {/*        <p>Betaling</p>*/}
+                {/*        {registration?.has_paid ? (*/}
+                {/*            <img src={process.env.PUBLIC_URL + '/assets/approved.svg'} alt={"Approved"}/>*/}
+                {/*        ) : (*/}
+                {/*            <img src={process.env.PUBLIC_URL + '/assets/rejected.svg'} alt={"Rejected"}/>*/}
+                {/*        )}*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </div>
     );

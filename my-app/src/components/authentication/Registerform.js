@@ -6,6 +6,7 @@ import {Link, useHistory} from "react-router-dom";
 function Registerform(props) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState([])
+    const[errorText, setErrorText] = useState(false)
     const [sent, setSent] = useState(false)
     const [register, setRegister] = useState({name: "",email: "", password: "", repeat_password: ""})
     const history = useHistory()
@@ -15,10 +16,10 @@ function Registerform(props) {
         setSent(true)
         if (checkFields()) {
             setLoading(true)
-            AuthService.register(register, history).catch((e) => {
-                    console.log(e.message)
+            AuthService.register(register, history).catch(({response}) => {
+                    console.log(response.data.message)
+                    setError(response.data.message)
                     setLoading(false)
-
                 }
             )
         }
@@ -36,6 +37,7 @@ function Registerform(props) {
     }
 
     const checkFields = () => {
+        setErrorText(false)
         setError([])
         const temp = []
         if (!validateName(register.name)) {
@@ -52,6 +54,7 @@ function Registerform(props) {
             temp.push("repeat_password")
         }
         setError(temp)
+        setErrorText("Invalid fields");
         return temp.length === 0
     }
 
@@ -77,7 +80,8 @@ function Registerform(props) {
                 <input className={`pl-2 text-base w-full bg-white ${error.includes("repeat_password") && "text-red"}`} type={"password"} name={"repeat_password"}
                        placeholder={"Wachtwoord bevestigen"} onChange={handleChange}/>
             </div>
-            <div className={"flex justify-end"}>
+            <div className={"flex justify-between"}>
+                <p className={"mt-4 text-red"}>{errorText}</p>
                 <Link className={"text-s font-thin text-blue underline mb-14 mt-4 hover:text-blue-dark"}
                       to={"/login"}>Inloggen</Link>
             </div>
