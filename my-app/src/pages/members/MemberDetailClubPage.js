@@ -1,11 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import axiosInstance from "../../services/axios.service";
+import SessionCard from "../../components/members/SessionCard";
+import SessionLoadingCard from "../../components/members/SessionLoadingCard";
+import SwitchSelector from "react-switch-selector";
+import SessionSelectorCard from "../../components/members/SessionSelectorCard";
+
 
 function MemberDetailClubPage(props) {
     let {memberId, clubId} = useParams();
     const [registration, setRegistration] = useState(props.location.aboutProps?.registration);
+    const [sessions, setSessions] = useState([])
+    const [selectedSession, setSelectedSession] = useState(undefined)
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -17,10 +24,20 @@ function MemberDetailClubPage(props) {
             .catch((error) => {
                 console.log(error);
                 setError(error);
-            }).finally(() => {
-            setIsLoaded(true)
-        })
+            })
     }, [])
+
+    useEffect(() => {
+        if (registration) {
+            axiosInstance.get(`/sportsessions/${registration.group_id}`).then(({data}) => {
+                setSessions(data.data)
+            }).catch((e) => {
+                console.log(e)
+            }).finally(() => {
+                setIsLoaded(true)
+            })
+        }
+    }, [registration])
 
     return (
         <div className={"p-10 text-2xl font-bold md:w-3/5"}>
@@ -28,26 +45,21 @@ function MemberDetailClubPage(props) {
                 <PageHeader link={`/leden/${memberId}`}
                             title={registration?.club.name}
                             subtitle={registration?.group.name}/>
-                {/*<p className={"text-2xl font-medium"}>Overzicht</p>*/}
-                {/*<div className={"max-w-lg font-normal"}>*/}
-                {/*    <div className={"flex justify-between"}>*/}
-                {/*        <p>Sport</p>*/}
-                {/*        <p>{sport.name}</p>*/}
-                {/*    </div>*/}
-                {/*    <div className={"flex justify-between"}>*/}
-                {/*        <p>Start Datum</p>*/}
-                {/*        <p>21/03/1998</p>*/}
-                {/*    </div>*/}
-                {/*    <div className={"flex justify-between"}>*/}
-                {/*        <p>Betaling</p>*/}
-                {/*        {registration?.has_paid ? (*/}
-                {/*            <img src={process.env.PUBLIC_URL + '/assets/approved.svg'} alt={"Approved"}/>*/}
-                {/*        ) : (*/}
-                {/*            <img src={process.env.PUBLIC_URL + '/assets/rejected.svg'} alt={"Rejected"}/>*/}
-                {/*        )}*/}
-                {/*    </div>*/}
-                {/*</div>*/}
             </div>
+            <div className={"mt-40"}>
+                {isLoaded ? sessions.map((session, index) => (
+                    <SessionCard key={index} session={session} setSelectedSession={setSelectedSession} selectedSession={selectedSession}/>)) : (
+                    <Fragment>
+                        <SessionLoadingCard/>
+                        <SessionLoadingCard/>
+                        <SessionLoadingCard/>
+                        <SessionLoadingCard/>
+                    </Fragment>
+                )}
+            </div>
+            {
+                selectedSession && (<SessionSelectorCard session={selectedSession}/> )
+            }
         </div>
     );
 }
