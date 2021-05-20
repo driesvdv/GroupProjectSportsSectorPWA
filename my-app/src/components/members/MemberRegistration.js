@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import Echo from "laravel-echo";
 import {useHistory, useParams} from "react-router-dom";
 import axiosInstance from "../../services/axios.service";
-import PageHeader from "../PageHeader";
 
 const MemberRegistration = () => {
     let {memberId} = useParams();
@@ -112,10 +111,10 @@ const MemberRegistration = () => {
 
     return (
 
-        <div className={"flex flex-col   md:max-w-sm md:ml-12 sm:mx-auto"}>
+        <div className={"mt-40 flex flex-col md:max-w-sm md:ml-12 sm:mx-auto"}>
             <form onSubmit={handleSubmit} className={"flex flex-col space-y-10"}>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                    <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'}/>
+                    <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'} alt={"home"}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Club"}
                             placeholder={"E-mailadres"} onChange={handleClubChange} defaultValue={'DEFAULT'}>
                         <option value="DEFAULT" selected disabled>Club</option>
@@ -123,7 +122,7 @@ const MemberRegistration = () => {
                     </select>
                 </div>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                    <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'}/>
+                    <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'} alt={"users"}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Group"} value={groupName}
                             placeholder={"E-mailadres"} onChange={handleGroupChange}>
                         <option value="DEFAULT" disabled>Groep</option>
@@ -131,7 +130,7 @@ const MemberRegistration = () => {
                     </select>
                 </div>
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
-                    <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'}/>
+                    <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'} alt={"clock"}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
                             placeholder={"E-mailadres"} onChange={handleTimeChange} value={groupId}>
                         <option value="DEFAULT" disabled>Tijdstip</option>

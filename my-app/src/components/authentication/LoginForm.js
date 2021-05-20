@@ -25,18 +25,7 @@ function LoginForm() {
         }
     }
 
-    useEffect(() => {
-        if (sent) {
-            checkFields()
-        }
-    }, [login, sent])
-
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        setLogin(prev => ({...prev, [name]: value}))
-    }
-
-    const checkFields = () => {
+    function checkFields() {
         setError(false)
         if (validateEmail(login.email) && validatePassword(login.password)) {
             return true
@@ -44,6 +33,22 @@ function LoginForm() {
             setError("Invalid credentials")
         }
         return false
+    }
+
+    useEffect(() => {
+        if (sent) {
+            setError(false)
+            if (validateEmail(login.email) && validatePassword(login.password)) {
+                return true
+            } else {
+                setError("Invalid credentials")
+            }
+            return false        }
+    }, [login, sent])
+
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setLogin(prev => ({...prev, [name]: value}))
     }
 
     return (

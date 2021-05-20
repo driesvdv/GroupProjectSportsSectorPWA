@@ -6,7 +6,7 @@ import MemberLoadingCard from "../../components/members/MemberLoadingCard";
 import PageHeader from "../../components/PageHeader";
 
 function MemberListPage(props) {
-    const [error, setError] = useState(null);
+    //const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [members, setMembers] = useState([]);
 
@@ -17,7 +17,7 @@ function MemberListPage(props) {
             })
             .catch(function (error) {
                 console.log(error);
-                setError(error);
+                //setError(error);
             })
             .finally(() => {
                 setIsLoaded(true);

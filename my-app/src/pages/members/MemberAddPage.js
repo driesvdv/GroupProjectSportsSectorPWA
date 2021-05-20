@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {NavLink, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import axiosInstance from "../../services/axios.service";
 
@@ -32,12 +32,12 @@ function MemberAddPage(props) {
     return (
         <div className={"p-10 text-2xl font-bold md:w-3/5"}>
             <div className={"space-y-4"}>
-                <PageHeader Link={'/leden'} Title={'Leden'} SubTitle={'Toevoegen'}/>
+                <PageHeader link={'/leden'} title={'Leden'} subtitle={'Toevoegen'}/>
             </div>
-            <div className={"flex flex-col md:w-64 md:ml-12 sm:mx-auto"}>
+            <div className={"mt-40 flex flex-col md:w-64 md:ml-12 sm:mx-auto"}>
                 <form className={"flex flex-col space-y-10"} onSubmit={e => { handleSubmit(e) }}>
                     <div className={"border-b-2 border-gray-dark mt-4 py-1 bg-white flex"}>
-                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'}/>
+                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'} alt={"user"}/>
                         <input
                             className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
                             name='first_name'
@@ -48,7 +48,7 @@ function MemberAddPage(props) {
                     </div>
 
                     <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
-                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'}/>
+                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/user.svg'} alt={"user"}/>
                         <input
                             className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
                             name='last_name'
@@ -59,7 +59,7 @@ function MemberAddPage(props) {
                     </div>
 
                     <div className={"border-gray-dark border-b-2 my-4 h-12 flex"}>
-                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/calendar.svg'}/>
+                        <img className={"w-8 h-8"} src={process.env.PUBLIC_URL + '/assets/calendar.svg'} alt={"calendar"}/>
                         <input
                             className={"h-full pl-2 text-lg text-blue-dark bg-white flex-grow w-16"}
                             name='birth_date'

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import moment from 'moment';
 
 function MemberCard({member}) {
@@ -17,7 +17,7 @@ function MemberCard({member}) {
                     <p className={"text-base text-green font-normal"}>{moment.duration(moment().diff(member.birth_date)).asYears().toFixed(0)} jaar</p>
                 </div>
                 <div className={"flex flex-col justify-center mr-4"}>
-                    <img src={process.env.PUBLIC_URL + '/assets/chevron-right.svg'}/>
+                    <img src={process.env.PUBLIC_URL + '/assets/chevron-right.svg'} alt={"arrow"}/>
                 </div>
             </Link>
         </div>

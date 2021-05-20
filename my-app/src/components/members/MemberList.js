@@ -19,7 +19,7 @@ const MemberList = () => {
                 .finally(() => {
                     setLoading(true)
                 })
-        }, [])
+        }, [memberId])
 
         return (
             <div>

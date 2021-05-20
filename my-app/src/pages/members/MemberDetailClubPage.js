@@ -4,7 +4,6 @@ import PageHeader from "../../components/PageHeader";
 import axiosInstance from "../../services/axios.service";
 import SessionCard from "../../components/members/SessionCard";
 import SessionLoadingCard from "../../components/members/SessionLoadingCard";
-import SwitchSelector from "react-switch-selector";
 import SessionSelectorCard from "../../components/members/SessionSelectorCard";
 
 
@@ -13,7 +12,7 @@ function MemberDetailClubPage(props) {
     const [registration, setRegistration] = useState(props.location.aboutProps?.registration);
     const [sessions, setSessions] = useState([])
     const [selectedSession, setSelectedSession] = useState(undefined)
-    const [error, setError] = useState(null);
+    //const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -23,9 +22,9 @@ function MemberDetailClubPage(props) {
             })
             .catch((error) => {
                 console.log(error);
-                setError(error);
+                //setError(error);
             })
-    }, [])
+    }, [memberId, clubId])
 
     useEffect(() => {
         if (registration) {
@@ -58,7 +57,7 @@ function MemberDetailClubPage(props) {
                 )}
             </div>
             {
-                selectedSession && (<SessionSelectorCard session={selectedSession}/> )
+                selectedSession && (<SessionSelectorCard session={selectedSession} registrantId={registration.registrant_id} sessionId={selectedSession?.id}/> )
             }
         </div>
     );

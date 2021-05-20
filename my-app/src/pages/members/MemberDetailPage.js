@@ -16,7 +16,7 @@ function MemberDetailPage(props) {
             .then(({data}) => {
                 setRegistrant(data.data)
             })
-    }, [])
+    }, [memberId])
 
     return (
         <div className={"p-10 text-2xl font-bold md:w-3/5"}>

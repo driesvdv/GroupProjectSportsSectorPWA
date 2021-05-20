@@ -17,7 +17,7 @@ function MemberRouter() {
                 <img className={"top-0 right-0 max-w-swoosh fixed z-10"} alt={"top-svg"}
                      src={process.env.PUBLIC_URL + '/assets/top-large.svg'}/>
             </div>
-            <NavBar/>
+                <NavBar/>
             <Switch>
                 <Route exact path={path}>
                     <MemberListPage/>

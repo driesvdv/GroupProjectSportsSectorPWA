@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, NavLink, useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const RegistrationCard = ({registration}) => {
     let {memberId} = useParams();
@@ -18,12 +18,12 @@ const RegistrationCard = ({registration}) => {
                     <p className={"font-montserrat font-medium text-lg"}>{registration.club.name}</p>
                     <p className={"text-base text-green font-normal"}>{registration.group.name}</p>
                     <div className={"flex"}>
-                        <img src={process.env.PUBLIC_URL + '/assets/clock.svg'} className={"mr-1"}/>
+                        <img src={process.env.PUBLIC_URL + '/assets/clock.svg'} className={"mr-1"} alt={"clock"}/>
                         <p className={"text-base font-normal"}>{registration.group.time}</p>
                     </div>
                 </div>
                 <div className={"flex flex-col justify-center mr-4"}>
-                    <img src={process.env.PUBLIC_URL + '/assets/chevron-right.svg'}/>
+                    <img src={process.env.PUBLIC_URL + '/assets/chevron-right.svg'} alt={"arrow"}/>
                 </div>
             </Link>
         </div>
