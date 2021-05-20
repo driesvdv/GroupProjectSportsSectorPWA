@@ -49,7 +49,7 @@ function SessionSelectorCard({session, registrantId, sessionId}) {
     useEffect(() => {
             setIsLoaded(false)
             axiosInstance.get(`/sportsessions/${sessionId}/isabsent`).then(({data}) => {
-                //console.log(data)                       // true is afwezig, false is aanwezig
+                console.log(data ? "afwezig" : "aanwezig")                       // true is afwezig, false is aanwezig
                 setSelectedIndex(data ? 1 : 0)    // 1 is afwezig, 0 is aanwezig
             }).finally(() => {
                 setIsLoaded(true)
