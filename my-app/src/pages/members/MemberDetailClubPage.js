@@ -58,22 +58,22 @@ function MemberDetailClubPage(props) {
     }, [registration])
 
     return (
-        <div className={"p-10 text-2xl font-bold md:w-3/5 flex"}>
+        <div className={"p-10 text-2xl font-bold md:w-3/5 lg:w-4/5 flex"}>
             <div>
                 <PageHeader link={`/leden/${memberId}`}
                             title={registration?.club.name}
                             subtitle={registration?.group.name}/>
             </div>
-            <div className={'flex mt-40 lg:flex-row-reverse flex-col'}>
-                <div>
+            <div className={'w-full flex mt-40 lg:flex-row-reverse lg:justify-between flex-col'}>
+                <div className={"lg:ml-10 min-w-20"}>
                     <p className={"text-2xl font-medium"}>Overzicht</p>
-                    <div className={"max-w-lg font-normal font-montserrat text-sm"}>
+                    <div className={"font-normal font-montserrat text-sm"}>
                         <div className={"flex justify-between"}>
                             <p>Sport</p>
                             <p>{sport?.name}</p>
                         </div>
                         <div className={"flex justify-between"}>
-                            <p>Inschrijvingsdatum</p>
+                            <p>Start datum</p>
                             <p>{moment(registration?.created_at).format("DD/MM/YYYY")}</p>
                         </div>
                         <div className={"flex justify-between"}>
@@ -86,20 +86,23 @@ function MemberDetailClubPage(props) {
                         </div>
                     </div>
                 </div>
-                <div>
-                    {isLoaded ? sessions.map((session, index) => (
-                        <SessionCard key={index} session={session} setSelectedSession={setSelectedSession} selectedSession={selectedSession}/>)) : (
-                        <Fragment>
-                            <SessionLoadingCard/>
-                            <SessionLoadingCard/>
-                            <SessionLoadingCard/>
-                            <SessionLoadingCard/>
-                        </Fragment>
-                    )}
+                <div className={"flex flex-col"}>
+                    <div>
+                        {isLoaded ? sessions.map((session, index) => (
+                            <SessionCard key={index} session={session} setSelectedSession={setSelectedSession} selectedSession={selectedSession}/>)) : (
+                            <Fragment>
+                                <SessionLoadingCard/>
+                                <SessionLoadingCard/>
+                                <SessionLoadingCard/>
+                                <SessionLoadingCard/>
+                            </Fragment>
+                        )}
+                    </div>
+                    {
+                        selectedSession && (<SessionSelectorCard session={selectedSession} registrantId={registration?.registrant_id} sessionId={selectedSession?.id}/> )
+                    }
                 </div>
-                {
-                    selectedSession && (<SessionSelectorCard session={selectedSession} registrantId={registration?.registrant_id} sessionId={selectedSession?.id}/> )
-                }
+
             </div>
         </div>
     );
