@@ -12,5 +12,5 @@ export function validateName (name) {
 }
 
 export function validatePasswords (password, passwordRepeat) {
-    return password === passwordRepeat
+    return password === passwordRepeat && passwordRepeat !== ""
 }

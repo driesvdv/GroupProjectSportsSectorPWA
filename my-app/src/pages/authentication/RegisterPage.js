@@ -2,8 +2,8 @@ import React from 'react';
 import PolygonWithLogo from "../../components/authentication/PolygonWithLogo";
 import MobileTopPolygon from "../../components/authentication/MobileTopPolygon";
 import Title from "../../components/authentication/Title";
-import MobileBottomPolygon from "../../components/authentication/MobileBottomPolygon";
 import Registerform from "../../components/authentication/Registerform";
+import MobileBottomRegisterPolygon from "../../components/authentication/MobileBottomRegisterPolygon";
 
 function RegisterPage(props) {
     return (
@@ -14,7 +14,7 @@ function RegisterPage(props) {
                 <Title text={"Account aanmaken"}/>
                 <Registerform/>
             </div>
-            <MobileBottomPolygon/>
+            <MobileBottomRegisterPolygon/>
         </div>
     );
 }
