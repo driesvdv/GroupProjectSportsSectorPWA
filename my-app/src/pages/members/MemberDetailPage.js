@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from "react-router-dom"
 import axiosInstance from "../../services/axios.service";
+import moment from "moment";
 import PageHeader from "../../components/PageHeader";
 import MemberList from "../../components/members/MemberList";
 import PlusLink from "../../components/PlusLink";
@@ -23,7 +24,7 @@ function MemberDetailPage(props) {
             <div className={"space-y-4"}>
                 <PageHeader link={`/leden`}
                             title={registrant?.full_name}
-                            subtitle={registrant?.birth_date}/>
+                            subtitle={moment(registrant?.birth_date).format("DD/MM/YYYY")}/>
             </div>
             <div className={"mt-40"}>
                 <MemberList/>
