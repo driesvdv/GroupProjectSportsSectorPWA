@@ -105,7 +105,7 @@ const MemberRegistration = () => {
             .catch(error => {
                 console.log(error)
                 setLoading(false)
-                alert('Vul alle velden in')
+                alert(error.response.data.message)
             })
     }
 
