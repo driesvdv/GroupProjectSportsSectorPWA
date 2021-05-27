@@ -28,8 +28,7 @@ function MemberDetailPage(props) {
             } else {
                 setName(temp[0])
             }
-
-            setDate(`${new Date(registrant?.birth_date).getDate()}/${new Date(registrant?.birth_date).getMonth() < 10 ? "0" + new Date(registrant?.birth_date).getMonth() : new Date(registrant?.birth_date).getMonth()}/${new Date(registrant?.birth_date).getFullYear()}`)
+            setDate(`${new Date(registrant?.birth_date).getDate()}/${new Date(registrant?.birth_date).getMonth() + 1 <= 9 ? "0" + (new Date(registrant?.birth_date).getMonth() + 1) : new Date(registrant?.birth_date).getMonth() + 1}/${new Date(registrant?.birth_date).getFullYear()}`)
         }
     }, [registrant])
 

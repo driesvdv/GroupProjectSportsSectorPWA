@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function SessionCard({session, setSelectedSession, selectedSession}) {
     const months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
-    const startTime = new Date(session?.start_time)
-    const endTime = new Date(session?.end_time)
+    const [startTime, setStartTime] = useState(new Date(session.start_time))
+    const [endTime, setEndTime] = useState(new Date(session.end_time))
 
     const clickSession = () => {
         if (selectedSession?.id === session.id) {
