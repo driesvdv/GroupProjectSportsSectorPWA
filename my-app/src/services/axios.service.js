@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8000/api/',
+    baseURL: 'https://api.sportplus.vandevelde.studio/api/',
     timeout: 5000,
     headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
