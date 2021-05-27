@@ -1,6 +1,6 @@
 {
   "short_name": "Sport+",
-  "name": "Sport plus",
+  "name": "Sport Plus Application",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,7 +10,14 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "maskable_icon_x192.png",
+      "sizes": "196x196",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "logo512.png",
@@ -20,6 +27,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#1A936F",
   "background_color": "#f9f9f9"
 }

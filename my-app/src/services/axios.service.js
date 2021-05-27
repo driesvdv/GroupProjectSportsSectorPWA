@@ -10,13 +10,16 @@ const axiosInstance = axios.create({
     }
 });
 
-axiosInstance.interceptors.response.use(
-    response => response,
-    error => {
-        if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
-            //history.push("/login", {error})
+axiosInstance.interceptors.request.use(
+    config => {
+        const token = sessionStorage.getItem('access_token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
         }
-        return Promise.reject(error);
-    }
+        return config;
+    },
+    error => Promise.reject(error)
 );
+
+
 export default axiosInstance

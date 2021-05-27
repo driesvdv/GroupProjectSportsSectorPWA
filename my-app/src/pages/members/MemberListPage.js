@@ -4,9 +4,10 @@ import axiosInstance from "../../services/axios.service";
 import PlusLink from "../../components/PlusLink";
 import MemberLoadingCard from "../../components/members/MemberLoadingCard";
 import PageHeader from "../../components/PageHeader";
+import ErrorCard from "../../components/members/ErrorCard";
 
 function MemberListPage(props) {
-    //const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [members, setMembers] = useState([]);
 
@@ -16,8 +17,7 @@ function MemberListPage(props) {
                 setMembers(data.data);
             })
             .catch(function (error) {
-                console.log(error);
-                //setError(error);
+                setError(error.message);
             })
             .finally(() => {
                 setIsLoaded(true);
@@ -38,6 +38,7 @@ function MemberListPage(props) {
                         <MemberLoadingCard/>
                     </Fragment>
                 )}
+                {error && (<ErrorCard error={error}/> )}
             </div>
             <PlusLink link={"/leden/add"}/>
         </div>

@@ -19,7 +19,7 @@ class AuthService {
     }
 
     logout(history) {
-        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
         axiosInstance.defaults.headers['Authorization'] = null;
         history.push("/login")
     }

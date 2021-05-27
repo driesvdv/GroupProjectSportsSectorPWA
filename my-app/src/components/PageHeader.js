@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 
 function PageHeader({link, title, subtitle}) {
     return (
-        <div className={"flex fixed z-10 mt-8 h-24"}>
+        <div className={"flex fixed mt-8 h-24"}>
             {link ? (
                 <NavLink to={link}>
                     <img className={"flex-none p-2 w-12 h-12 mt-2 cursor-pointer"}

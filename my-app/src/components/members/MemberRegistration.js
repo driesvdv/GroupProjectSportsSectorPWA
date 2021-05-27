@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Echo from "laravel-echo";
 import {useHistory, useParams} from "react-router-dom";
 import axiosInstance from "../../services/axios.service";
+import ErrorFormCard from "./ErrorFormCard";
 
 const MemberRegistration = () => {
     let {memberId} = useParams();
@@ -13,6 +14,7 @@ const MemberRegistration = () => {
     const [groups, setGroups] = useState(null);
     const [groupNames, setGroupnames] = useState(null);
     const [times, setTimes] = useState(null);
+    const [error, setError] = useState(false)
 
     const [groupId, setGroupId] = useState('DEFAULT');
     const [groupName, setGroupName] = useState('DEFAULT');
@@ -93,6 +95,12 @@ const MemberRegistration = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         setLoading(true)
+        setError(false)
+        if (groupId === "DEFAULT" || memberId === "DEFAULT" || groupName === "DEFAULT") {
+            setLoading(false)
+            setError("Ongeldige waarden")
+            return
+        }
         axiosInstance.post('/registrations', {
             "group_id": groupId,
             "registrant_id": memberId
@@ -105,7 +113,7 @@ const MemberRegistration = () => {
             .catch(error => {
                 console.log(error)
                 setLoading(false)
-                alert(error.response.data.message)
+                setError(error.response.data.message)
             })
     }
 
@@ -116,7 +124,7 @@ const MemberRegistration = () => {
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/home-colored.svg'} alt={"home"}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Club"}
-                            placeholder={"E-mailadres"} onChange={handleClubChange} defaultValue={'DEFAULT'}>
+                            onChange={handleClubChange} defaultValue={'DEFAULT'}>
                         <option value="DEFAULT" selected disabled>Club</option>
                         {clubs}
                     </select>
@@ -124,7 +132,7 @@ const MemberRegistration = () => {
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/users-colored.svg'} alt={"users"}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Group"} value={groupName}
-                            placeholder={"E-mailadres"} onChange={handleGroupChange}>
+                            onChange={handleGroupChange}>
                         <option value="DEFAULT" disabled>Groep</option>
                         {groupNames}
                     </select>
@@ -132,7 +140,7 @@ const MemberRegistration = () => {
                 <div className={`flex flex-row border-b-2 border-gray-dark mt-4 py-1 bg-white`}>
                     <img src={process.env.PUBLIC_URL + '/assets/clock-colored.svg'} alt={"clock"}/>
                     <select className={`pl-2 text-base w-full bg-white `} name={"Time"}
-                            placeholder={"E-mailadres"} onChange={handleTimeChange} value={groupId}>
+                            onChange={handleTimeChange} value={groupId}>
                         <option value="DEFAULT" disabled>Tijdstip</option>
                         {times}
                     </select>
@@ -143,6 +151,7 @@ const MemberRegistration = () => {
                     {loading ? 'Laden...' : "Inschrijven"}
                 </button>
             </form>
+            {error && (<ErrorFormCard error={error}/>)}
         </div>
     );
 };

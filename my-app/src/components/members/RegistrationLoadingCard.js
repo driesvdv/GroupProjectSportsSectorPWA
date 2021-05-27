@@ -7,10 +7,6 @@ function RegistrationLoadingCard() {
                 <div className={"pb-2"}>
                     <div className={"w-36 h-6 bg-grey mt-2 rounded-md"}/>
                     <div className={"w-12 h-5 bg-grey mt-2 rounded-md"}/>
-                    <div className={"flex mt-2"}>
-                        <div className={"w-24 h-6 bg-grey rounded-md"}/>
-                        <div className={"w-12 h-6 bg-grey ml-6 rounded-md"}/>
-                    </div>
                 </div>
             </div>
         </div>

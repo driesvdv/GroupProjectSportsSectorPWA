@@ -65,13 +65,13 @@ function NavBar(props) {
                     </NavLink>
                 </nav>
                 <div className={"text-lg fixed inset-x-0 bottom-0 px-3 py-3"}>
-                    <Link onClick={logout}
+                    <div onClick={logout}
                        className="block py-2 5 px-4 flex flex-items-center space-x-3 hover:bg-grey rounded-md transition duration-200">
                         <img className={"w-7 h-7"}
                              src={process.env.PUBLIC_URL + '/assets/log out.svg'}
                              alt={"sport plus logo"}/>
                         <span>Uitloggen</span>
-                    </Link>
+                    </div>
                 </div>
             </div>
         </div>
