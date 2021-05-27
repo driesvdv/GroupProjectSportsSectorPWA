@@ -86,7 +86,7 @@ function MemberDetailClubPage(props) {
                         </div>
                     </div>
                 </div>
-                <div className={"flex flex-col"}>
+                <div className={"flex flex-col md:min-w-1/2 lg:min-w-3/4"}>
                     <div>
                         {isLoaded ? sessions.map((session, index) => (
                             <SessionCard key={index} session={session} setSelectedSession={setSelectedSession} selectedSession={selectedSession} />)) : (
