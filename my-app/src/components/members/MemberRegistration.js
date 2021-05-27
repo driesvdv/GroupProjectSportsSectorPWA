@@ -23,8 +23,8 @@ const MemberRegistration = () => {
         broadcaster: 'pusher',
         key: '5070279b-cd35-4b59-9fe7-d52e3bbd7674',
         wsHost: 'sockets.sportplus.vandevelde.studio',
-        wsPort: 6001,
-        forceTLS: false,
+        wsPort: 443,
+        forceTLS: true,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
     });
