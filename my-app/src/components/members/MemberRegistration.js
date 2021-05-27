@@ -24,7 +24,7 @@ const MemberRegistration = () => {
         key: '5070279b-cd35-4b59-9fe7-d52e3bbd7674',
         wsHost: 'sockets.sportplus.vandevelde.studio',
         wsPort: 443,
-        forceTLS: true,
+        forceTLS: false,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
     });
