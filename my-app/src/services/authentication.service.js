@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'https://api.sportplus.vandevelde.studio/api/',
+    baseURL: 'http://localhost:8000/api/',
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ class AuthService {
     }
 
     logout(history) {
-        localStorage.removeItem('access_token');
+        sessionStorage.removeItem('access_token');
         axiosInstance.defaults.headers['Authorization'] = null;
         history.push("/login")
     }

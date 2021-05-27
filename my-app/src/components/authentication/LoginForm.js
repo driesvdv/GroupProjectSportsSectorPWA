@@ -43,7 +43,8 @@ function LoginForm() {
             } else {
                 setError("Invalid credentials")
             }
-            return false        }
+            return false
+        }
     }, [login, sent])
 
     const handleChange = (event) => {
@@ -53,23 +54,25 @@ function LoginForm() {
 
     return (
         <form onSubmit={handleSubmit} className={"flex flex-col"}>
-            <div
-                className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
-                <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'} alt={"sign in symbol"}/>
-                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"email"}
-                       name={"email"}
-                       placeholder={"E-mailadres"} onChange={handleChange}/>
+            <div className={"z-20 bg-white px-2 pb-4 rounded-md"}>
+                <div
+                    className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} z-20 px-1 mt-4 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/at sign.svg'} alt={"sign in symbol"}/>
+                    <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"email"}
+                           name={"email"}
+                           placeholder={"E-mailadres"} onChange={handleChange}/>
+                </div>
+                <div
+                    className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} z-20 mt-4 px-1 py-1 bg-white`}>
+                    <img src={process.env.PUBLIC_URL + '/assets/locked.svg'} alt={"lock symbol"}/>
+                    <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"password"}
+                           name={"password"}
+                           placeholder={"Wachtwoord"} onChange={handleChange}/>
+                </div>
             </div>
-            <div
-                className={`flex flex-row border-b-2 ${error ? "border-red" : "border-gray-dark"} mt-4 py-1 bg-white`}>
-                <img src={process.env.PUBLIC_URL + '/assets/locked.svg'} alt={"lock symbol"}/>
-                <input className={`pl-2 text-base w-full bg-white ${error && "text-red"}`} type={"password"}
-                       name={"password"}
-                       placeholder={"Wachtwoord"} onChange={handleChange}/>
-            </div>
-            <div className={"flex justify-between"}>
+            <div className={"flex justify-between z-20"}>
                 <p className={"mt-4 text-red"}>{error}</p>
-                <Link className={"text-s font-thin text-blue underline mb-14 mt-4 hover:text-blue-dark"}
+                <Link className={"text-s font-thin text-blue underline mb-10 mt-4 hover:text-blue-dark"}
                       to={"/registreren"}>Account aanmaken</Link>
             </div>
             <input

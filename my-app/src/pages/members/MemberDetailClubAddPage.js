@@ -14,7 +14,9 @@ function MemberDetailClubAddPage(props) {
             .get('/registrants/' + memberId)
             .then(({data}) => {
                 setRegistrant(data.data)
-            })
+            }).catch(e => {
+            console.log(e)
+        })
     }, [memberId])
 
     return (

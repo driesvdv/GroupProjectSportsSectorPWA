@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: 'https://api.sportplus.vandevelde.studio/api/',
+    baseURL: 'http://localhost:8000/api/',
     timeout: 5000,
     headers: {
         'Authorization': `Bearer ${sessionStorage.getItem('access_token')}`,
@@ -10,13 +10,16 @@ const axiosInstance = axios.create({
     }
 });
 
-axiosInstance.interceptors.response.use(
-    response => response,
-    error => {
-        if (error.response.status === 401 && error.response.statusText === "Unauthorized") {
-            //history.push("/login", {error})
+axiosInstance.interceptors.request.use(
+    config => {
+        const token = sessionStorage.getItem('access_token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
         }
-        return Promise.reject(error);
-    }
+        return config;
+    },
+    error => Promise.reject(error)
 );
+
+
 export default axiosInstance
