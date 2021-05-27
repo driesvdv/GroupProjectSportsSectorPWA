@@ -22,9 +22,9 @@ const MemberRegistration = () => {
     window.Echo = new Echo({
         broadcaster: 'pusher',
         key: '5070279b-cd35-4b59-9fe7-d52e3bbd7674',
-        wsHost: window.location.hostname,
+        wsHost: 'sockets.sportplus.vandevelde.studio',
         wsPort: 6001,
-        forceTLS: true,
+        forceTLS: false,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
     });
