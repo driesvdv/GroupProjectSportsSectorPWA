@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
+import 'moment/locale/nl'
+import moment from "moment"
+
+moment.locale("nl")
+
 
 function SessionCard({session, setSelectedSession, selectedSession}) {
-    const months = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
-    const [startTime, setStartTime] = useState(new Date(session.start_time))
-    const [endTime, setEndTime] = useState(new Date(session.end_time))
-
     const clickSession = () => {
         if (selectedSession?.id === session.id) {
             setSelectedSession(undefined)
@@ -17,8 +18,8 @@ function SessionCard({session, setSelectedSession, selectedSession}) {
         <div className={'lg:ml-16 xl:ml-12'}>
             <div onClick={clickSession} className={"border-gray p-2 mx-auto shadow flex justify-between my-5 z-30 rounded-lg hover:shadow-dark bg-white mouse-pointer"}>
                 <div className={"pb-2"}>
-                    <p className={"font-montserrat font-medium text-lg"}>{`${startTime.getDate()} ${months[startTime.getMonth() - 1]} ${startTime.getFullYear()}`}</p>
-                    <p className={"text-base text-green font-normal"}>{`${startTime.getHours()}u${startTime.getMinutes() < 10 ? "0" + startTime.getMinutes() : startTime.getMinutes()} - ${endTime.getHours()}u${endTime.getMinutes() < 10 ? "0" + endTime.getMinutes() : endTime.getMinutes()}`}</p>
+                    <p className={"font-montserrat font-medium text-lg"}>{moment(session?.start_time).format("LL")}</p>
+                    <p className={"text-base text-green font-normal"}>{`${moment(session?.start_time).format("LT")} - ${moment(session?.end_time).format("LT")}`}</p>
                 </div>
                 <div className={"flex flex-col justify-center mr-4"}>
                     <img src={process.env.PUBLIC_URL + '/assets/info.svg'} alt={"info"} />
